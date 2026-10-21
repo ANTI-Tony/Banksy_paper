@@ -1,7 +1,7 @@
 % Main results, final run (526 clips; one evaluation job for all rows). Source: out/sel/{eval_vlm,temporal,mat_stats,bg}.json
 \begin{table*}[t]
 \centering
-\caption{\textbf{Main results.} Readability: share of clips whose text the reader transcribes exactly in at least 4 of 5 frames. Fixed / broken: garbled $\to$ correct and correct $\to$ wrong transitions; net = fixed $-$ broken. Appearance: glyph-agnostic material distance to the original text (normalised within this run; lower is closer). BG PSNR: outside the dilated text region. Flicker and jitter: motion-compensated, inside the text box (grey levels). Development clips (40) are excluded in the lower block. \pending{The 99 two-row clips affected by a compositing fix are being re-run; their numbers will be updated.}}
+\caption{\textbf{Main results.} Readability: share of clips whose text the reader transcribes exactly in at least 4 of 5 frames. Fixed / broken: garbled $\to$ correct and correct $\to$ wrong transitions; net = fixed $-$ broken. Appearance: glyph-agnostic material distance to the original text (normalised within this run; lower is closer). BG PSNR: outside the dilated text region. Flicker and jitter: motion-compensated, inside the text box (grey levels). Development clips (40) are excluded in the lower block. The 99 two-row clips affected by a compositing fix were re-run and re-read in a second job (supplement).}
 \label{tab:main}
 \setlength{\tabcolsep}{4.5pt}
 \resizebox{\linewidth}{!}{%
@@ -11,14 +11,14 @@
 \midrule
 \multicolumn{10}{@{}l}{\emph{All 526 clips}} \\
 Original (generated) & 54.0 & -- & -- & -- & 0.819 & -- & -- & 1.98 & 9.18 \\
-\steer~\cite{zeng2026steervte} & 84.0 & 164 & \textbf{6} & 158 & 0.946 & \textbf{1.83} & 36.49 & \textbf{1.66} & 8.34 \\
-\method w/o preservation gate & 91.1 & \textbf{212} & 17 & 195 & \textbf{0.961} & 2.66 & \textbf{42.92} & 1.77 & \textbf{7.72} \\
-\method & \textbf{91.4} & \textbf{212} & 15 & \textbf{197} & \textbf{0.961} & 2.53 & \textbf{42.92} & 1.79 & 7.85 \\
+\steer~\cite{zeng2026steervte} & 84.0 & 164 & \textbf{6} & 158 & 0.946 & \textbf{1.81} & 36.49 & \textbf{1.66} & 8.34 \\
+\method w/o preservation gate & 91.1 & \textbf{211} & 16 & 195 & \textbf{0.962} & 2.65 & \textbf{42.97} & 1.77 & \textbf{7.73} \\
+\method & \textbf{91.4} & \textbf{211} & 14 & \textbf{197} & \textbf{0.962} & 2.50 & \textbf{42.97} & 1.79 & 7.85 \\
 \midrule
 \multicolumn{10}{@{}l}{\emph{486 clips outside the development set}} \\
 Original (generated) & 55.1 & -- & -- & -- & 0.822 & -- & -- & 1.98 & 9.11 \\
-\steer~\cite{zeng2026steervte} & 84.2 & 147 & \textbf{6} & 141 & 0.945 & \textbf{1.86} & 36.40 & \textbf{1.65} & 8.29 \\
-\method & \textbf{91.2} & \textbf{190} & 15 & \textbf{175} & \textbf{0.959} & 2.57 & \textbf{42.87} & 1.79 & \textbf{7.85} \\
+\steer~\cite{zeng2026steervte} & 84.2 & 147 & \textbf{6} & 141 & 0.945 & \textbf{1.83} & 36.40 & \textbf{1.65} & 8.29 \\
+\method & \textbf{91.2} & \textbf{189} & 14 & \textbf{175} & \textbf{0.960} & 2.53 & \textbf{42.93} & 1.79 & \textbf{7.85} \\
 \bottomrule
 \end{tabular}}
 \end{table*}

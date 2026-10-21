@@ -47,7 +47,7 @@ print("ok")
 # teaser side panel: headline numbers of the final 526-clip run (SteerVTE vs Banksy)
 fig, axs = plt.subplots(3, 1, figsize=(2.05, 2.35))
 for ax, (lab, a, b, fmt) in zip(axs, [("Readability (%) $\\uparrow$", 84.0, 91.4, "{:.1f}"), ("Net repairs (clips) $\\uparrow$", 158, 197, "{:d}"),
-                                      ("Background PSNR (dB) $\\uparrow$", 36.5, 42.9, "{:.1f}")]):
+                                      ("Background PSNR (dB) $\\uparrow$", 36.5, 43.0, "{:.1f}")]):
     ax.barh([1, 0], [a, b], color=[C["steervte"], C["B1"]], height=0.62, linewidth=0)
     ax.set_yticks([1, 0]); ax.set_yticklabels(["SteerVTE", "Banksy"]); ax.set_xticks([]); ax.spines["bottom"].set_visible(False)
     ax.set_title(lab, fontsize=8, loc="left", pad=2)
