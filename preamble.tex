@@ -1,0 +1,39 @@
+%% Packages and macros (loaded before hyperref; see main.tex)
+\usepackage{cuted}          % two-column teaser (strip)
+\usepackage{currfile}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{xspace}
+\usepackage{pifont}         % \ding{51} check, \ding{55} cross
+\usepackage{CJKutf8}        % Chinese strings in examples
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit,backgrounds}
+\usepackage{amsmath,amssymb}
+
+%% colours (Okabe--Ito; consistent with the plots)
+\definecolor{okgreen}{RGB}{0,140,70}
+\definecolor{badred}{RGB}{200,30,30}
+\definecolor{banksyblue}{HTML}{0072B2}
+\definecolor{steerorange}{HTML}{E69F00}
+\definecolor{gategold}{HTML}{F0E442}
+\definecolor{procgrey}{HTML}{EEF2F5}
+
+%% names used throughout (keep them consistent)
+\newcommand{\method}{Banksy\xspace}
+\newcommand{\steer}{SteerVTE\xspace}
+\newcommand{\sat}{SAT\xspace}
+\newcommand{\zh}[1]{\begin{CJK*}{UTF8}{gbsn}#1\end{CJK*}}
+\newcommand{\cjkimg}[1]{\raisebox{-0.14em}{\includegraphics[height=0.9em]{figs/cjk/#1}}} % CJK runs with glyphs missing from gbsn
+\newcommand{\ok}{\textcolor{okgreen}{\ding{51}}}
+\newcommand{\no}{\textcolor{badred}{\ding{55}}}
+\newcommand{\str}[1]{\texttt{#1}}
+
+%% editing notes (render in red in the draft; disable for submission)
+\newcommand{\TODO}[1]{\textbf{\color{red}[TODO: #1]}}
+\newcommand{\pending}[1]{{\color{red}#1}}
+% \renewcommand{\TODO}[1]{}
+% \renewcommand{\pending}[1]{#1}

@@ -1,0 +1,51 @@
+% Component ablations (earlier front end; experiments T and D, sheets 15-16) and front-end variants (sheet 30), 526 clips.
+% Appearance is normalised within each evaluation job, so it is comparable only inside one block.
+\begin{table*}[t]
+\centering
+\begin{minipage}[t]{0.43\linewidth}
+\centering
+\caption{\textbf{Rendering components} (earlier front end, 526 clips). Top: carrier-anchored temporal components; bottom: style-matched rendering. Appearance is normalised within each block. The box policy used by \method's fallback is T4 + D2.}
+\label{tab:components}
+\small\setlength{\tabcolsep}{2.4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & Read.\ $\uparrow$ & Flicker $\downarrow$ & Jitter $\downarrow$ & Appear.\ $\downarrow$ \\
+\midrule
+Original & 53.8 & 1.98 & 9.18 & -- \\
+\steer & 83.8 & 1.66 & 8.30 & -- \\
+Naive paste (per-frame OCR box) & 87.1 & 3.12 & 11.66 & -- \\
+\quad + carrier tracking (T1) & 87.3 & 2.80 & 10.28 & -- \\
+\quad + carrier-space erasure (T2) & 88.6 & 2.19 & 9.27 & -- \\
+\quad + anchored masks, ink smoothing (T3) & 87.1 & 3.06 & 11.47 & -- \\
+\quad + all three (T4) & 89.0 & 1.67 & 7.12 & -- \\
+\midrule
+\steer & 83.8 & -- & -- & 1.39 \\
+Naive paste & 86.9 & -- & -- & 1.89 \\
+\quad + font matching (D1) & 89.5 & -- & -- & 1.83 \\
+\quad + per-frame ink, shading field (D2) & 89.4 & -- & -- & 1.82 \\
+\quad + edge blur and grain (D3) & 87.6 & -- & -- & 2.01 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\centering
+\caption{\textbf{Front-end variants and the localization gate} (526 clips, one evaluation job). W/L: clips correct only with the variant / only with the box policy (McNemar $p$). Residual: share of old ink still visible, relative to the original, on 24 held-out clips.}
+\label{tab:frontend}
+\small\setlength{\tabcolsep}{2.4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & Read.\ $\uparrow$ & vs.\ box (W/L, $p$) & Jitter $\downarrow$ & Appear.\ $\downarrow$ & Resid.\ $\downarrow$ \\
+\midrule
+Original & 53.8 & -- & 9.18 & -- & 1.00 \\
+\steer & 84.0 & 33/68, $<$.001 & 8.30 & 1.50 & -- \\
+Naive paste & 86.7 & 16/37, .005 & 12.53 & 2.38 & -- \\
+Box policy (T4+D2) & 90.7 & -- & 7.80 & 2.27 & 0.42 \\
+Instance layout, state-machine tracking & 85.2 & 32/61, .003 & 7.68 & 2.50 & 0.21 \\
+Instance layout, carrier tracking & 86.9 & 34/54, .042 & 7.68 & 2.44 & -- \\
+\quad + localization gate (\method front end) & 91.1 & 27/25, .89 & 7.66 & 2.33 & 0.23 \\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\end{table*}

@@ -1,0 +1,28 @@
+% Component ablations on the earlier front end (526 clips). Block 1: temporal anchoring (experiment T, one evaluation job);
+% block 2: style-matched rendering (experiment D, one evaluation job on the same front-end cache). Appearance is normalised
+% within each job, so it is comparable only inside a block. Source: workbook sheets 15 and 16.
+\begin{table}[t]
+\centering
+\caption{\textbf{Rendering components} (earlier front end, 526 clips). Top: carrier-anchored temporal components; bottom: style-matched rendering. Appearance is normalised within each block. The box policy used by \method's fallback is \emph{T4 + D2}.}
+\label{tab:components}
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & Read.\ $\uparrow$ & Flicker $\downarrow$ & Jitter $\downarrow$ & Appear.\ $\downarrow$ \\
+\midrule
+Original & 53.8 & 1.98 & 9.18 & -- \\
+\steer & 83.8 & 1.66 & 8.30 & -- \\
+Naive paste (OCR box per frame) & 87.1 & 3.12 & 11.66 & -- \\
+\quad + carrier tracking (T1) & 87.3 & 2.80 & 10.28 & -- \\
+\quad + carrier-space erasure (T2) & 88.6 & 2.19 & 9.27 & -- \\
+\quad + anchored masks, ink smoothing (T3) & 87.1 & 3.06 & 11.47 & -- \\
+\quad + all three (T4) & 89.0 & 1.67 & 7.12 & -- \\
+\midrule
+\steer & 83.8 & -- & -- & 1.39 \\
+Naive paste & 86.9 & -- & -- & 1.89 \\
+\quad + font matching (D1) & 89.5 & -- & -- & 1.83 \\
+\quad + per-frame ink, shading field (D2) & 89.4 & -- & -- & 1.82 \\
+\quad + edge blur and grain (D3) & 87.6 & -- & -- & 2.01 \\
+\bottomrule
+\end{tabular}
+\end{table}

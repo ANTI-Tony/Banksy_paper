@@ -1,0 +1,452 @@
+{
+ "teaser": {
+  "g055_en_signboard_s6": {
+   "orig": [
+    "teaser_g055_en_signboard_s6_orig.jpg",
+    "ROCRDS",
+    false
+   ],
+   "steervte": [
+    "teaser_g055_en_signboard_s6_steervte.jpg",
+    "RECRDS",
+    false
+   ],
+   "B1": [
+    "teaser_g055_en_signboard_s6_B1.jpg",
+    "RECORDS",
+    true
+   ]
+  },
+  "g064_zh_screen_s7": {
+   "orig": [
+    "teaser_g064_zh_screen_s7_orig.jpg",
+    "便剱台",
+    false
+   ],
+   "steervte": [
+    "teaser_g064_zh_screen_s7_steervte.jpg",
+    "便剱合",
+    false
+   ],
+   "B1": [
+    "teaser_g064_zh_screen_s7_B1.jpg",
+    "便利店",
+    true
+   ]
+  },
+  "g008_en_signboard_s2": {
+   "orig": [
+    "teaser_g008_en_signboard_s2_orig.jpg",
+    "FRESH BREAD",
+    true
+   ],
+   "steervte": [
+    "teaser_g008_en_signboard_s2_steervte.jpg",
+    "FRECH BREAD",
+    false
+   ],
+   "B1": [
+    "teaser_g008_en_signboard_s2_B1.jpg",
+    "FRESH BREAD",
+    true
+   ]
+  }
+ },
+ "qual": {
+  "g001_en_neon_s2": {
+   "orig": [
+    "qual_g001_en_neon_s2_orig.jpg",
+    "OFFEE SHOP",
+    false
+   ],
+   "steervte": [
+    "qual_g001_en_neon_s2_steervte.jpg",
+    "COFFEE SHOP",
+    true
+   ],
+   "B1": [
+    "qual_g001_en_neon_s2_B1.jpg",
+    "COFFEE SHOP",
+    true
+   ]
+  },
+  "g100_zh_neon_s5": {
+   "orig": [
+    "qual_g100_zh_neon_s5_orig.jpg",
+    "公公",
+    false
+   ],
+   "steervte": [
+    "qual_g100_zh_neon_s5_steervte.jpg",
+    "公园",
+    true
+   ],
+   "B1": [
+    "qual_g100_zh_neon_s5_B1.jpg",
+    "公园",
+    true
+   ]
+  },
+  "g008_en_signboard_s4": {
+   "orig": [
+    "qual_g008_en_signboard_s4_orig.jpg",
+    "FRESY BREAD",
+    false
+   ],
+   "steervte": [
+    "qual_g008_en_signboard_s4_steervte.jpg",
+    "FRESY BREAD",
+    false
+   ],
+   "B1": [
+    "qual_g008_en_signboard_s4_B1.jpg",
+    "FRESH BREAD",
+    true
+   ]
+  },
+  "g085_zh_signboard_s8": {
+   "orig": [
+    "qual_g085_zh_signboard_s8_orig.jpg",
+    "夜市 Qingdao Night Market Promotion",
+    false
+   ],
+   "steervte": [
+    "qual_g085_zh_signboard_s8_steervte.jpg",
+    "夜市",
+    true
+   ],
+   "B1": [
+    "qual_g085_zh_signboard_s8_B1.jpg",
+    "夜市",
+    true
+   ]
+  },
+  "g014_en_wood_s6": {
+   "orig": [
+    "qual_g014_en_wood_s6_orig.jpg",
+    "TEXOITYIO",
+    false
+   ],
+   "steervte": [
+    "qual_g014_en_wood_s6_steervte.jpg",
+    "EXIT",
+    true
+   ],
+   "B1": [
+    "qual_g014_en_wood_s6_B1.jpg",
+    "EXIT",
+    true
+   ]
+  },
+  "g105_zh_wood_s1": {
+   "orig": [
+    "qual_g105_zh_wood_s1_orig.jpg",
+    "小悒念滑",
+    false
+   ],
+   "steervte": [
+    "qual_g105_zh_wood_s1_steervte.jpg",
+    "小心地滑",
+    true
+   ],
+   "B1": [
+    "qual_g105_zh_wood_s1_B1.jpg",
+    "小心地滑",
+    true
+   ]
+  },
+  "g024_en_metal_s2": {
+   "orig": [
+    "qual_g024_en_metal_s2_orig.jpg",
+    "PHARMAICE",
+    false
+   ],
+   "steervte": [
+    "qual_g024_en_metal_s2_steervte.jpg",
+    "PHARMACY",
+    true
+   ],
+   "B1": [
+    "qual_g024_en_metal_s2_B1.jpg",
+    "PHARMACY",
+    true
+   ]
+  },
+  "g089_zh_metal_s3": {
+   "orig": [
+    "qual_g089_zh_metal_s3_orig.jpg",
+    "澎影院",
+    false
+   ],
+   "steervte": [
+    "qual_g089_zh_metal_s3_steervte.jpg",
+    "洹影院",
+    false
+   ],
+   "B1": [
+    "qual_g089_zh_metal_s3_B1.jpg",
+    "电影院",
+    true
+   ]
+  },
+  "g007_en_glass_s2": {
+   "orig": [
+    "qual_g007_en_glass_s2_orig.jpg",
+    "FREST BREAD",
+    false
+   ],
+   "steervte": [
+    "qual_g007_en_glass_s2_steervte.jpg",
+    "FRESB BREAD",
+    false
+   ],
+   "B1": [
+    "qual_g007_en_glass_s2_B1.jpg",
+    "FRESH BREAD",
+    true
+   ]
+  },
+  "g090_zh_glass_s7": {
+   "orig": [
+    "qual_g090_zh_glass_s7_orig.jpg",
+    "花崗店 HUAJANGDIAN",
+    false
+   ],
+   "steervte": [
+    "qual_g090_zh_glass_s7_steervte.jpg",
+    "花店",
+    true
+   ],
+   "B1": [
+    "qual_g090_zh_glass_s7_B1.jpg",
+    "南湖公园",
+    false
+   ]
+  },
+  "g034_en_paper_s3": {
+   "orig": [
+    "qual_g034_en_paper_s3_orig.jpg",
+    "SALE",
+    false
+   ],
+   "steervte": [
+    "qual_g034_en_paper_s3_steervte.jpg",
+    "SALE",
+    false
+   ],
+   "B1": [
+    "qual_g034_en_paper_s3_B1.jpg",
+    "SALE 50%",
+    true
+   ]
+  },
+  "g096_zh_paper_s0": {
+   "orig": [
+    "qual_g096_zh_paper_s0_orig.jpg",
+    "洗衣",
+    false
+   ],
+   "steervte": [
+    "qual_g096_zh_paper_s0_steervte.jpg",
+    "洗衣店",
+    true
+   ],
+   "B1": [
+    "qual_g096_zh_paper_s0_B1.jpg",
+    "洗衣店",
+    true
+   ]
+  },
+  "g029_en_screen_s3": {
+   "orig": [
+    "qual_g029_en_screen_s3_orig.jpg",
+    "PARKING",
+    false
+   ],
+   "steervte": [
+    "qual_g029_en_screen_s3_steervte.jpg",
+    "NO PARKING",
+    true
+   ],
+   "B1": [
+    "qual_g029_en_screen_s3_B1.jpg",
+    "NO PARKING",
+    true
+   ]
+  },
+  "g078_zh_screen_s4": {
+   "orig": [
+    "qual_g078_zh_screen_s4_orig.jpg",
+    "停歺场",
+    false
+   ],
+   "steervte": [
+    "qual_g078_zh_screen_s4_steervte.jpg",
+    "停车场",
+    true
+   ],
+   "B1": [
+    "qual_g078_zh_screen_s4_B1.jpg",
+    "停车场",
+    true
+   ]
+  }
+ },
+ "fail": {
+  "g043_en_glass_s1": {
+   "orig": [
+    "fail_g043_en_glass_s1_orig.jpg",
+    "FLOWER MARKET",
+    true
+   ],
+   "B1": [
+    "fail_g043_en_glass_s1_B1.jpg",
+    "FLOWER MARKET",
+    true
+   ],
+   "steervte": [
+    "fail_g043_en_glass_s1_steervte.jpg",
+    "FLOWER MARKET",
+    true
+   ]
+  },
+  "g026_en_signboard_s7": {
+   "orig": [
+    "fail_g026_en_signboard_s7_orig.jpg",
+    "PHARMAICA",
+    false
+   ],
+   "B1": [
+    "fail_g026_en_signboard_s7_B1.jpg",
+    "PHARMACY",
+    true
+   ],
+   "steervte": [
+    "fail_g026_en_signboard_s7_steervte.jpg",
+    "PHARMACY",
+    true
+   ]
+  },
+  "g014_en_wood_s3": {
+   "orig": [
+    "fail_g014_en_wood_s3_orig.jpg",
+    "EXIT",
+    true
+   ],
+   "B1": [
+    "fail_g014_en_wood_s3_B1.jpg",
+    "EXIT",
+    true
+   ],
+   "steervte": [
+    "fail_g014_en_wood_s3_steervte.jpg",
+    "EXIT",
+    true
+   ]
+  },
+  "g010_en_neon_s5": {
+   "orig": [
+    "fail_g010_en_neon_s5_orig.jpg",
+    "BOOK STORE",
+    true
+   ],
+   "B1": [
+    "fail_g010_en_neon_s5_B1.jpg",
+    "K STORE",
+    false
+   ],
+   "steervte": [
+    "fail_g010_en_neon_s5_steervte.jpg",
+    "BOOK STORE",
+    true
+   ]
+  },
+  "g058_en_signboard_s4": {
+   "orig": [
+    "fail_g058_en_signboard_s4_orig.jpg",
+    "TEA HOUSE",
+    true
+   ],
+   "B1": [
+    "fail_g058_en_signboard_s4_B1.jpg",
+    "TEA TEA HOUSE",
+    false
+   ],
+   "steervte": [
+    "fail_g058_en_signboard_s4_steervte.jpg",
+    "TEA HOUSE",
+    true
+   ]
+  },
+  "g076_zh_neon_s7": {
+   "orig": [
+    "fail_g076_zh_neon_s7_orig.jpg",
+    "出口",
+    true
+   ],
+   "B1": [
+    "fail_g076_zh_neon_s7_B1.jpg",
+    "备份",
+    false
+   ],
+   "steervte": [
+    "fail_g076_zh_neon_s7_steervte.jpg",
+    "出口",
+    true
+   ]
+  }
+ },
+ "diff": {
+  "g106_zh_paper_s6": {
+   "files": {
+    "orig": "diff_g106_zh_paper_s6_orig.jpg",
+    "steervte": "diff_g106_zh_paper_s6_steervte_diff.png",
+    "B1": "diff_g106_zh_paper_s6_B1_diff.png"
+   },
+   "stats": {
+    "steervte": {
+     "mean_abs_outside": 2.58,
+     "share_gt8_outside": 0.036
+    },
+    "B1": {
+     "mean_abs_outside": 1.1,
+     "share_gt8_outside": 0.0
+    }
+   }
+  },
+  "g008_en_signboard_s4": {
+   "files": {
+    "orig": "diff_g008_en_signboard_s4_orig.jpg",
+    "steervte": "diff_g008_en_signboard_s4_steervte_diff.png",
+    "B1": "diff_g008_en_signboard_s4_B1_diff.png"
+   },
+   "stats": {
+    "steervte": {
+     "mean_abs_outside": 1.7,
+     "share_gt8_outside": 0.0078
+    },
+    "B1": {
+     "mean_abs_outside": 0.95,
+     "share_gt8_outside": 0.0
+    }
+   }
+  },
+  "g085_zh_signboard_s0": {
+   "files": {
+    "orig": "diff_g085_zh_signboard_s0_orig.jpg",
+    "steervte": "diff_g085_zh_signboard_s0_steervte_diff.png",
+    "B1": "diff_g085_zh_signboard_s0_B1_diff.png"
+   },
+   "stats": {
+    "steervte": {
+     "mean_abs_outside": 2.53,
+     "share_gt8_outside": 0.055
+    },
+    "B1": {
+     "mean_abs_outside": 0.88,
+     "share_gt8_outside": 0.0001
+    }
+   }
+  }
+ }
+}

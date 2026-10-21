@@ -1,0 +1,22 @@
+% Background fidelity: absolute grey-level difference to the original frame (clipped at 24), full frame, frame 24.
+\begin{figure}[t]
+\centering
+\setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.5}
+\begin{tabular}{@{}ccc@{}}
+\footnotesize Original & \footnotesize $|\,$\steer $-$ original$\,|$ & \footnotesize $|\,$\method $-$ original$\,|$ \\[2pt]
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g106_zh_paper_s6_orig.jpg} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g106_zh_paper_s6_steervte_diff.png} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g106_zh_paper_s6_B1_diff.png} \\
+ & \scriptsize outside: 2.58 & \scriptsize outside: 1.10 \\[2pt]
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g008_en_signboard_s4_orig.jpg} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g008_en_signboard_s4_steervte_diff.png} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g008_en_signboard_s4_B1_diff.png} \\
+ & \scriptsize outside: 1.70 & \scriptsize outside: 0.95 \\[2pt]
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g085_zh_signboard_s0_orig.jpg} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g085_zh_signboard_s0_steervte_diff.png} &
+\includegraphics[width=0.325\linewidth]{figs/cells/diff_g085_zh_signboard_s0_B1_diff.png} \\
+ & \scriptsize outside: 2.53 & \scriptsize outside: 0.88 (untouched) \\
+\end{tabular}
+\caption{\textbf{Edit locality.} Absolute grey-level difference to the original frame (clipped at 24; white box: text region). \steer re-renders the whole frame, so residual edges appear everywhere; \method changes only the text region. The numbers give the mean absolute difference outside the dilated text region. \method's residual there ($\approx$1 grey level) is the video re-encoding floor, visible alone in the bottom row, where the preservation gate leaves an already-correct clip untouched while \steer still alters it.}
+\label{fig:diff}
+\end{figure}

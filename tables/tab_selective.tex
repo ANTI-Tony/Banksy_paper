@@ -1,0 +1,19 @@
+% Selective-editing study (pre-registered), final run, 526 clips, one evaluation job. Source: out/sel/analysis.txt (sheet 41).
+\begin{table*}[t]
+\centering
+\caption{\textbf{Selective, structure-preserving editing} (pre-registered; 526 clips, one front-end pass and one evaluation job). B0 is \method without the preservation gate; each component is added to B0 separately and then all three together (B4). Collateral: change outside the old and new glyphs in the text neighbourhood. The verdict applies the pre-registered criteria; development clips are excluded in the right block.}
+\label{tab:selective}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccccccc|ccc@{}}
+\toprule
+ & \multicolumn{9}{c|}{All 526 clips} & \multicolumn{3}{c}{486 clips (no development clips)} \\
+ & Read.\ $\uparrow$ & Fixed & Broken & Net & Appear.\ $\downarrow$ & BG PSNR & Collateral $\downarrow$ & Flicker & Verdict & Read.\ $\uparrow$ & Net & Collateral $\Delta$ vs.\ B0 \\
+\midrule
+B0: \method w/o preservation gate & 91.1 & 212 & 17 & 195 & 2.66 & 42.92 & 1.57 & 1.77 & -- & 90.9 & 174 & -- \\
+B1: + preservation gate (= \method) & \textbf{91.4} & 212 & \textbf{15} & \textbf{197} & 2.53 & 42.92 & 1.54 & 1.79 & adopted & \textbf{91.2} & \textbf{175} & $-0.031$ [$-0.06$, $-0.01$] \\
+B2: + glyph-only erasure & 83.8 & 181 & 24 & 157 & 2.52 & 43.01 & 1.48 & 1.80 & rejected & 84.6 & 143 & $-0.036$ [$-0.09$, $+0.03$] \\
+B3: + carrier-fit check & 89.0 & 199 & \textbf{15} & 184 & 2.55 & 42.90 & 1.56 & 1.78 & rejected & 89.1 & 165 & $-0.004$ [$-0.01$, $-0.00$] \\
+B4: all three & 83.1 & 172 & 19 & 153 & \textbf{2.37} & 42.99 & \textbf{1.45} & 1.83 & rejected & 83.5 & 138 & $-0.062$ [$-0.12$, $+0.00$] \\
+\bottomrule
+\end{tabular}}
+\end{table*}

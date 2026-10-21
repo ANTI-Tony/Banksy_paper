@@ -1,0 +1,113 @@
+\clearpage
+\setcounter{page}{1}
+\maketitlesupplementary
+\appendix
+
+\section{Benchmark details}
+\label{sec:supp_bench}
+
+\paragraph{Generation.} Clips were generated with the text-to-video mode of VACE-14B from 120 prompts, each asking for a scene with a sign of a given material that reads a quoted target string, with ten seeds per prompt; 1{,}178 of the 1{,}200 generations were usable (832$\times$464, 49 frames, 15\,fps). An OCR screen confirmed the requested text in 24\% of them (English 21\%, Chinese 27\%). The 526 benchmark clips were selected as garbled by an EasyOCR-based screen \pending{(selection rule to be documented)}; our evaluation reader judges 54.0\% of them correct, so the benchmark contains repair and do-nothing cases.
+
+\paragraph{Targets and composition.} The 40 target strings are: \str{BUS STOP} (25 clips), \str{FRESH BREAD} (23), \str{BOOK STORE} (22), \str{PHARMACY} (22), \str{COFFEE SHOP} (21), \str{TEA HOUSE} (20), \str{NO PARKING} (19), \str{FLOWER MARKET} (19), \str{SALE 50\%} (18), \str{NIGHT MARKET} (18), \zh{面包房} (17), \zh{小心地滑} (17), \zh{邮局} (16), \str{ICE CREAM} (15), \zh{停车场} (15), \zh{电影院} (15), \zh{书店} (14), \str{RECORDS} (13), \zh{出口} (13), \zh{洗衣店} (13), \zh{咖啡店} (12), \zh{茶馆} (12), \zh{欢迎光临} (11), \zh{营业中} (11), \str{OPEN} (10), \str{EXIT} (10), \zh{理发店} (10), \str{GALLERY} (9), \zh{花店} (9), \zh{公园} (9), \zh{火锅} (9), \str{BAKERY} (8), \zh{夜市} (8), \str{HOTEL} (7), \zh{便利店} (7), \zh{药房} (7), \str{LAUNDRY} (6), \zh{水果店} (6), \str{CINEMA} (5) and \str{WELCOME} (5). \Cref{tab:supp_comp} gives the material $\times$ language composition and the readability of each method per group.
+
+\begin{table}[h]
+\centering
+\caption{Composition of the benchmark and readability (\%) per group, final run.}
+\label{tab:supp_comp}
+\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Group & EN & ZH & Original & \steer & \method \\
+\midrule
+neon & 47 & 46 & 57.0 & 89.2 & 96.8 \\
+signboard & 74 & 12 & 65.1 & 77.9 & 93.0 \\
+wood & 20 & 34 & 63.0 & 92.6 & 92.6 \\
+metal & 22 & 34 & 71.4 & 94.6 & 96.4 \\
+glass & 52 & 24 & 34.2 & 77.6 & 84.2 \\
+paper & 55 & 41 & 49.0 & 80.2 & 86.5 \\
+screen & 25 & 40 & 43.1 & 81.5 & 92.3 \\
+\midrule
+English (295) & & & 62.4 & 84.1 & 90.2 \\
+Chinese (231) & & & 43.3 & 84.0 & 93.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Development data.} We disclose every clip that was inspected during development. (i) Twelve clips (``dev12'') were used to tune the instance front end and the SAT oracle; 24 random clips (``held24'') were not used for tuning, but screenshots of four of them were viewed during diagnosis and held24 informed the SAT margin, so they are not strictly held out. (ii) The 53 SAT-enabled clips were used for the SAT human study and then for the failure diagnosis of \cref{sec:exp_sat}; results of the padded canvas on them are development results. (iii) Forty clips were inspected while developing the selective-editing components; these are the clips excluded in the right block of \cref{tab:main,tab:selective}:
+{\scriptsize\texttt{g001\_en\_neon\_s1 g006\_en\_paper\_s3 g007\_en\_glass\_s6 g008\_en\_signboard\_s0 g010\_en\_neon\_s9 g011\_en\_wood\_s1 g020\_en\_glass\_s5 g020\_en\_glass\_s7 g022\_en\_neon\_s1 g024\_en\_metal\_s0 g025\_en\_paper\_s4 g028\_en\_signboard\_s3 g029\_en\_screen\_s2 g036\_en\_neon\_s6 g045\_en\_signboard\_s8 g046\_en\_neon\_s2 g046\_en\_neon\_s4 g046\_en\_neon\_s5 g049\_en\_wood\_s5 g052\_en\_screen\_s4 g057\_en\_neon\_s6 g057\_en\_neon\_s7 g059\_en\_metal\_s2 g067\_zh\_wood\_s9 g071\_zh\_neon\_s0 g076\_zh\_neon\_s5 g076\_zh\_neon\_s8 g083\_zh\_neon\_s1 g084\_zh\_neon\_s0 g084\_zh\_neon\_s3 g093\_zh\_neon\_s7 g098\_zh\_neon\_s1 g107\_zh\_neon\_s2 g107\_zh\_neon\_s9 g110\_zh\_neon\_s0 g110\_zh\_neon\_s4 g110\_zh\_neon\_s5 g110\_zh\_neon\_s7 g110\_zh\_neon\_s8 g116\_zh\_screen\_s8}.} The main conclusions do not change when they are removed.
+
+\section{Evaluation details}
+\label{sec:supp_eval}
+
+\paragraph{Reader.} Qwen2.5-VL-7B transcribes the hint-box crop (15\% padding) of frames 0, 12, 24, 36 and 48. A frame is exact if its normalised edit similarity to the target is at least 0.999 after normalisation (whitespace removed, lower-cased, traditional Chinese folded to simplified); a clip is correct if at least 4 of 5 frames are exact. An earlier draft of the pre-registration described this as ``at least 60\% of frames''; this was a documentation error, the code was fixed before the run, and the decisions are unaffected.
+
+\paragraph{Evaluation hygiene.} In an earlier phase, the reader produced garbled transcriptions (a repeated token) for about 8.5\% of the inputs on one cluster (x86, an older version of the inference library) and none on another (aarch64, newer version). Two refiners had been read on the clean system and their baselines on the faulty one, which inflated a comparison by 16.6 points; after re-reading everything in one job the advantage disappeared (\cref{sec:supp_refiner}). Since then, every table is produced by re-reading all of its rows in a single job, and we check transcriptions for garbage. Re-reading identical outputs in a second job changes readability by about one point, which is why we treat differences of that size as ties. The front end itself is not bit-reproducible across runs (GPU OCR boxes, LaMa on different devices); comparing two passes of identical code gives no significant difference in appearance or flicker but a 0.46\,dB difference in background PSNR, so we only compare variants from the same pass.
+
+\paragraph{Appearance distance.} Features per frame (CIELAB, inside the box): ink colour difference to the original, ink--ground contrast difference, halo excess normalised by contrast, boundary gradient normalised by contrast (edge softness), and standard deviation of lightness inside the eroded strokes (inner shading). The original compared with itself scores about 0.27, the estimation floor. Each feature is divided by its median over all method--clip pairs of the run, so values are comparable only within one evaluation job.
+
+\section{Implementation details}
+\label{sec:supp_impl}
+
+\paragraph{Reference frame.} Among the frames whose OCR score is at least 90\% of the maximum, the one closest to the middle of the clip.
+
+\paragraph{Gates.} Preservation gate: complete target read in $\geq$85\% of the frames, wrong readings in $\leq$5\%, reading inside the hint box, extra boxes in $\leq$10\% of the frames, and the concatenated reading of all boxes inside the hint box equal to the target in $\geq$90\% of the correct frames. Localization gate: $\geq$3 letters ($\geq$2 for Chinese), CIELAB distance between ink inside the letter band and inter-letter ground $\geq$40, letter height between 0.3 and 1.0 of the OCR box height, no fallback row grouping; otherwise the box policy is used (201 of 526 clips in the final run; in an earlier pass, the reasons were the row grouping for 134, letter height for 67, letter count for 40 and contrast for 36 clips, with overlaps). Appearance gate: emissive text (ink brighter than ground, or glow detected on the carrier) and a cross-validated error ratio below 0.75 against the flat fill in both directions.
+
+\paragraph{Letter height and polarity.} Latin letter height is the median height of letter-like components (solidity $\geq$0.85); Chinese letter height is taken from the ink distribution. Ink and ground are separated by $k$-means with $k\in\{2,3\}$ scored by letter morphology (component heights and holes), with a fixed seed.
+
+\paragraph{Font library.} 33 Latin and 8 Chinese families from Google Fonts, variable fonts expanded over their weights. In the final run, 26 Latin families and 3 Chinese families were selected (Noto Sans SC for 68\% of the Chinese clips, Noto Serif SC for 21\%, ZCOOL XiaoWei for 12\%).
+
+\paragraph{SAT.} The operator of \cref{eq:sat} is fitted per distance bin (signed distance in letter heights, support up to 0.6 outside the strokes) by least squares on the reference frame and applied to every frame through the carrier homography. The flat fill is the ink colour of the box policy. Cross-validation fits on the left half of the text row and tests on the right half, and vice versa.
+
+\paragraph{Runtime.} On an NVIDIA A40, the earlier front end took about 20\,s per clip and the learned refiner about 40\,s per clip; \steer reports 108\,s per 49-frame clip on its hardware. \pending{Runtime of the final pipeline to be measured.}
+
+\section{Pre-registration of the selective-editing study}
+\label{sec:supp_prereg}
+The study was registered before the run in an internal document with dated revisions. \textbf{Criteria.} B1: fewer broken clips, false skips $\leq$2\% of the skipped clips, paired readability not lower than B0 by more than 0.5 points. B2: collateral change decreases ($p<0.05$), readability not lower than B0 by more than one point, and the human artifact question favours B2. B3: infeasible flags confirmed by manual inspection; results reported with infeasible clips counted as failures (main) and excluded (reference). Components are attributed separately before B4 is considered. \textbf{Revisions during development} (on the development clips only, before the run) concerned the B2 glow model and the B3 boundary cues. \textbf{Revisions during the run} (before any result was seen, recorded at the time): B3 feasibility was changed to use the character density of the source, measured on the best reading over all frames; B1 received its fifth condition after two false skips were found while checking decisions (a correct word above garbled small text; a near-miss reading split across boxes). All 526 clips were then re-run with the final code. \textbf{Round two} (defined after the results, before any human data): a colour-completion variant of B2 and a whole-word-subset variant of B3 were tested on nine and six diagnosis clips, respectively, and were not run at scale. \textbf{Excluding infeasible clips} (reference): readability B1 92.0, B3 91.8; after manual review, replacing the non-confirmed B3 flags by B0 outputs gives 90.3\%.
+
+\section{Additional results}
+\label{sec:supp_results}
+
+\paragraph{Diagnosing the instance front end.} On the 379 clips where an earlier gated variant accepted an instance, forcing the box policy's colour pipeline (88.4\%) or a letter height of at least 0.6 box heights (88.1\%) did not close the gap to the box policy (92.3\%); replacing the box erase did not help either (87.6\%), whereas replacing the tracking state machine by carrier tracking did (90.8 vs.\ 91.3\%). A refinement with row splitting from the ink profile, a perspective trapezoid fitted to letter tops and bottoms (only with $\geq$6 homogeneous letters and consistent fits) and shadow-aware erasure fixed several stacked and perspective cases visually but lowered readability on aligned clips by 1.6 points and was not kept.
+
+\paragraph{Material-conditioned rendering.} We also tried rendering models per material (glow for neon and screens, bevel and shadow for metal, paint following the texture for wood, paper and signboards, translucency for glass), selected by the prompt label or by a VLM prediction. A wrong material model hurts consistently (appearance $+0.28$, $p<0.001$; worse on six of seven materials), but the right one helps clearly only on screens ($-0.49$, $p<0.001$) and hurts on glass ($+0.30$). The prompt label agrees with the visual material in only 60.5\% of the clips (the generator often renders signboards and screens as glowing text). An automatic pairwise realism judge (the same VLM, both orders averaged) scored 0.49--0.51 for every pair and could not discriminate. These models were dropped; SAT replaces them for emissive carriers.
+
+\paragraph{Occluders.} Carrier anchoring assumes that nothing passes in front of the text. On 90 garbled clips with synthetic occluders of known alpha (30 each crossing, fully covering for 13 frames, or covering half of the text), the temporally anchored pipeline erased or over-painted occluders more than naive pasting (occluder damage 10.3 vs.\ 5.4 grey levels). An occlusion map from a readable-frame median background with per-pixel adaptive thresholds reduced the damage to 3.4 ($-66\%$) but also lowered readability on visible frames (67\% vs.\ 73\%) because of false positives on strokes. Occlusion handling is therefore not part of \method, and clips with occluders remain a limitation.
+
+\paragraph{Learned refiner.} \label{sec:supp_refiner} \Cref{tab:supp_ladder} summarises the refiner study on the 296-clip garbled subset (window-level readability, all rows read in one job) and on 1{,}500 held-out image pairs. ``Closed'' is $1-\sum|\hat I-I|/\sum|P-I|$ over the text region, where $P$ is the paste and $I$ the original (0: equal to the paste; 1: perfect).
+
+\begin{table}[h]
+\centering
+\caption{Learned refiner: data scale and supervision. Video: 296 garbled clips (Lab dist.: mean CIELAB distance to the original in the original ink region; lower is closer); image: 1{,}500 held-out pairs (our-font paste; ``closed$^\dagger$'' with the original's own glyph pasted).}
+\label{tab:supp_ladder}
+\small\setlength{\tabcolsep}{2.5pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Video} & \multicolumn{3}{c}{Held-out image pairs} \\
+ & Read.\ & Lab dist.\ & Read.\ & Closed & Closed$^\dagger$ \\
+\midrule
+Paste & 80.7 & 53.9 & 81.3 & 0 & 0 \\
+Refiner, 0 image pairs & 78.4 & 51.1 & 68.9 & $-0.121$ & -- \\
+\quad 10k pairs & 75.3 & 51.7 & 51.9 & $-0.059$ & -- \\
+\quad 100k pairs & 76.4 & 51.8 & 55.5 & $-0.064$ & $-0.491$ \\
+\quad 1M pairs & 76.4 & 53.1 & 52.7 & $-0.058$ & -- \\
+Glyph-consistent, 100k & 77.7 & 52.8 & 77.0 & $-0.026$ & $+0.049$ \\
+Glyph-consistent, 1M & 78.7 & 52.7 & 76.5 & $-0.029$ & -- \\
+\quad + video pairs, street $\times$4 & 79.7 & 52.0 & 76.7 & $-0.029$ & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Combining with a generative editor.} An earlier version of our system used \steer as an editor inside a verify-and-select loop: skip clips whose text is already correct, try \steer first, accept its output only if EasyOCR reads the target, otherwise try our earlier refined rendering, and finally a second \steer seed. On the 526 clips it reached 91.1\% readability, 82.2\% on the garbled clips and kept 98.6\% of the correct clips correct, against 84.0\%, 67.8\% and 97.9\% for a single \steer run (earlier front end; the reader-selected best of two \steer seeds reaches 89.4\%). This supports the complementarity noted in \cref{sec:limits}; its appearance was not evaluated.
+
+\paragraph{Neon structure reconstruction.} On the 23 SAT-enabled neon clips we explored neon-specific operators---keeping the sign frame out of erasure and SAT, rebuilding double-line tube geometry, and restricting the rendered text to the word visible in the source. A non-blind preview judged three of six examples good and three faulty (old content showing through, a changed font style, and invented text); after fixes, this line was paused in favour of selective editing.
+
+\section{Human studies}
+\label{sec:supp_human}
+\paragraph{SAT study.} All 53 SAT-enabled clips; each trial shows the paste-only and the SAT version left and right of the original (full frame plus an enlarged text row), with the side randomised per clip (SAT on the left in 26 of 53). Raters, who know the target, answer separately: which version's material is closer to the original, which has fewer artifacts, and which flickers more (ties allowed). Five raters completed the study; the exclusion rule and its sensitivity analysis are described in \cref{sec:exp_sat}. Analyses use win rates with ties excluded, two-way bootstrap over raters and clips, clip-level sign tests, Fleiss' $\kappa$ and Gwet's AC1.
+
+\paragraph{Selective-editing study (in progress).} 88 pairs: \method (B1) vs.\ \steer on 60 clips sampled with a fixed seed among the 480 clips that \method edits, stratified by material $\times$ outcome (both correct, only one correct, neither) with proportional allocation (1--4 per cell), and B2 vs.\ B0 on 28 clips sampled among the 285 clips where B2 changes the erasure. Questions: which version's text belongs more naturally to the original scene, and which version damages the non-target content less; correctness is recorded separately. Left/right assignments are stored separately from the study page.
+
+\section{Failure cases}
+\label{sec:supp_fail}
+The 15 originally correct clips broken by \method, by type: compositing of two-row text (\str{SALE 50\%} $\times$2, \str{BUS STOP}; fixed, \pending{re-run pending}); text larger than its carrier (\str{BOOK STORE} on neon, \str{GALLERY}, \str{HOTEL}); wrong colour or contrast (\zh{书店} on extruded letters, \str{WELCOME} on a lightbox); undetected second row or remaining old text (\str{TEA HOUSE}, \str{FLOWER MARKET} $\times$2, \zh{面包房}); blurred neon glyph (\zh{出口}); and two borderline reader cases (\str{ICE CREAM}, \zh{火锅}) in which small neighbouring text is transcribed in 2 of 5 frames.

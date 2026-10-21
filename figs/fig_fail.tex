@@ -1,0 +1,21 @@
+\begin{figure*}[t]
+\centering
+\setlength{\tabcolsep}{1.2pt}\renewcommand{\arraystretch}{0.6}
+\begin{tabular}{@{}m{2.6cm}ccc@{}}
+&\footnotesize\textbf{Original} & \footnotesize\textbf{Banksy} & \footnotesize\textbf{SteerVTE (ref.)} \\[2pt]
+\scriptsize Correct original edited anyway; style lost & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g043_en_glass_s1_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g043_en_glass_s1_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g043_en_glass_s1_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{FLOWER MARKET}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{FLOWER MARKET}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{FLOWER MARKET}} \\[3pt]
+\scriptsize Erase patch, low contrast & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g026_en_signboard_s7_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g026_en_signboard_s7_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g026_en_signboard_s7_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{PHARMAICA}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{PHARMACY}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{PHARMACY}} \\[3pt]
+\scriptsize Outlined 3D letters flattened & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g014_en_wood_s3_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g014_en_wood_s3_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g014_en_wood_s3_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{EXIT}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{EXIT}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{EXIT}} \\[3pt]
+\scriptsize New text overflows the sign & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g010_en_neon_s5_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g010_en_neon_s5_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g010_en_neon_s5_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{BOOK STORE}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{K STORE}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{BOOK STORE}} \\[3pt]
+\scriptsize Second row missed; old text remains & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g058_en_signboard_s4_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g058_en_signboard_s4_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g058_en_signboard_s4_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{TEA HOUSE}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{TEA TEA HOUSE}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{TEA HOUSE}} \\[3pt]
+\scriptsize Neon glyph blurred & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g076_zh_neon_s7_orig.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g076_zh_neon_s7_B1.jpg} & \includegraphics[width=0.27\linewidth]{figs/cells/fail_g076_zh_neon_s7_steervte.jpg} \\
+&\parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{出口}}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{\zh{备份}}} & \parbox[t]{0.27\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{出口}}} \\[3pt]
+\end{tabular}
+\caption{\textbf{Failure modes of Banksy} (hand-picked to cover each type; SteerVTE shown for reference). The first three keep the target readable but degrade appearance; the last three come from clips whose original was already correct and that Banksy broke.}
+\label{fig:fail}
+\end{figure*}

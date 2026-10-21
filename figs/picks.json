@@ -1,0 +1,64 @@
+{
+ "teaser": [
+  [
+   "g055_en_signboard_s6",
+   "(a) garbled -> fixed"
+  ],
+  [
+   "g064_zh_screen_s7",
+   "(b) garbled -> fixed"
+  ],
+  [
+   "g008_en_signboard_s2",
+   "(c) correct -> kept"
+  ]
+ ],
+ "fig4": {
+  "neon_en": "g001_en_neon_s2",
+  "neon_zh": "g100_zh_neon_s5",
+  "signboard_en": "g008_en_signboard_s4",
+  "signboard_zh": "g085_zh_signboard_s8",
+  "wood_en": "g014_en_wood_s6",
+  "wood_zh": "g105_zh_wood_s1",
+  "metal_en": "g024_en_metal_s2",
+  "metal_zh": "g089_zh_metal_s3",
+  "glass_en": "g007_en_glass_s2",
+  "glass_zh": "g090_zh_glass_s7",
+  "paper_en": "g034_en_paper_s3",
+  "paper_zh": "g096_zh_paper_s0",
+  "screen_en": "g029_en_screen_s3",
+  "screen_zh": "g078_zh_screen_s4"
+ },
+ "fig7": [
+  [
+   "g043_en_glass_s1",
+   "Correct original edited anyway; style lost"
+  ],
+  [
+   "g026_en_signboard_s7",
+   "Erase patch, low contrast"
+  ],
+  [
+   "g014_en_wood_s3",
+   "Outlined 3D letters flattened"
+  ],
+  [
+   "g010_en_neon_s5",
+   "New text overflows the sign"
+  ],
+  [
+   "g058_en_signboard_s4",
+   "Second row missed; old text remains"
+  ],
+  [
+   "g076_zh_neon_s7",
+   "Neon glyph blurred"
+  ]
+ ],
+ "_note": "fig4 = random.Random(2027).choice per material x language among garbled originals outside the 40 development clips (not curated); teaser/fig7 chosen by hand to illustrate; teaser = SteerVTE wrong & Banksy right, ranked by Banksy appearance distance (mad), picked by eye from the top 8",
+ "diff": [
+  "g106_zh_paper_s6",
+  "g008_en_signboard_s4",
+  "g085_zh_signboard_s0"
+ ]
+}
