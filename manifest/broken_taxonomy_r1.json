@@ -1,0 +1,8 @@
+{"run": "al_r1 (align/r1, eval_vlm.json of al_r1_eval)", "inspected": "2026-10-22, frame 24 crops of original / B1 / SteerVTE",
+ "categories": {
+  "text larger than its carrier, letters fall off": ["g010_en_neon_s5", "g018_en_wood_s3", "g040_en_wood_s6", "g074_zh_metal_s3"],
+  "wrong colour or contrast on a lightbox / extruded letters": ["g032_en_signboard_s7", "g068_zh_screen_s0"],
+  "old text left visible next to the new text (undetected second row or incomplete erasure)": ["g037_en_paper_s7", "g043_en_glass_s2", "g044_en_paper_s4", "g058_en_signboard_s4", "g087_zh_glass_s2"],
+  "stacked two-row text misread on an LED screen": ["g033_en_screen_s1"]},
+ "notes": {"g087_zh_glass_s2": "the original shows 兜影 院院 but the reader transcribes it as 电影院 in all frames, so the 'correct original' verdict is itself doubtful",
+           "pipeline_ocr": "the preservation gate's OCR reads the original correctly in 0% of frames for 11 clips and 2% for g040_en_wood_s6"}}

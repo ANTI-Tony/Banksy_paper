@@ -1,0 +1,32 @@
+{
+ "source": "align/r1/cache/*.npz on the cluster (al_r1 front-end pass), computed 2026-10-22",
+ "tilt_rotated_clips": 157,
+ "fshape_font_changed_clips": 25,
+ "rotated_and_font_changed": 12,
+ "b1_fonts": {
+  "edited_clips_en": 257,
+  "edited_clips_zh": 223,
+  "latin_families_selected": 26,
+  "chinese_families_selected": 3,
+  "noto_sans_sc_share_zh": 0.673,
+  "library": "33 Latin and 8 Chinese families"
+ },
+ "edited_clips": 480,
+ "box_policy_clips": 168,
+ "instance_path_clips": 312,
+ "box_policy_reasons_top": {
+  "ocr rows": 99,
+  "letters 2": 29
+ },
+ "sat_enabled": 50,
+ "sat_rejected": {
+  "not_emissive": 134,
+  "no_gain": 96,
+  "asym": 32
+ },
+ "fonts_zh_share": {
+  "Noto Sans SC": 0.673,
+  "Noto Serif SC": 0.202,
+  "ZCOOL XiaoWei": 0.126
+ }
+}

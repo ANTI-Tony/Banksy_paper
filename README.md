@@ -31,3 +31,7 @@ All 49 references were verified against arXiv / proceedings / publisher pages (O
 - Exact rule used to select the 526 benchmark clips; runtime of the final pipeline.
 - Selective-editing human study (88 pairs) is still collecting answers.
 - External benchmarks (VTE-Bench, VidScribe) were run with the earlier box-policy front end.
+
+## Reproducibility
+
+`MANIFEST.md` lists, for every table and figure, the run it comes from, the frozen code commit, model revisions, prompt, seeds and the sha256 of the result files. `tools/paper_numbers.py` regenerates the single-run numbers (`numbers_r1.tex`) and the generated tables from those files.

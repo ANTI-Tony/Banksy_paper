@@ -1,0 +1,9 @@
+g026_en_signboard_s7
+g055_en_signboard_s6
+g024_en_metal_s2
+g008_en_signboard_s8
+g025_en_paper_s7
+g026_en_signboard_s0
+g029_en_screen_s6
+g035_en_glass_s8
+g054_en_glass_s0
