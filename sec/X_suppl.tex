@@ -37,7 +37,7 @@
 
 \paragraph{SAT.} The operator of \cref{eq:sat} is fitted per distance bin (signed distance in letter heights, support up to 0.6 outside the strokes) by least squares on the reference frame and applied to every frame through the carrier homography. The flat fill is the ink colour of the box policy. Cross-validation fits on the left half of the text row and tests on the right half, and vice versa.
 
-\paragraph{Runtime.} On an NVIDIA A40, the earlier front end took about 20\,s per clip and the learned refiner about 40\,s per clip; \steer reports 108\,s per 49-frame clip on its hardware. \pending{Runtime of the final pipeline to be measured.}
+\paragraph{Runtime.} On an NVIDIA A40, the earlier front end took about 20\,s per clip and the learned refiner about 40\,s per clip; \steer reports 108\,s per 49-frame clip on its hardware. The frozen final pipeline processed the 100 VTE-Bench clips in about 8.6\,s per clip and GPU on GH200 nodes (two parallel workers, 7\,min 11\,s after a model-loading time of 28\,s); this is a wall-clock estimate from the run logs, \pending{a controlled per-clip measurement on the benchmark is pending}.
 
 \section{Pre-registration of the selective-editing study}
 \label{sec:supp_prereg}
