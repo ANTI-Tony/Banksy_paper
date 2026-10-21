@@ -24,8 +24,10 @@ latexmk main.tex        # pdflatex + bibtex; Chinese strings use CJKutf8 (gbsn),
 
 ## Open items (marked in red in the PDF)
 
+All 49 references were verified against arXiv / proceedings / publisher pages (October 2026).
+
+
 - 99 two-row clips are being re-run after a compositing fix; Tables 1 and 5, the failure counts and Fig. 4 will be updated.
-- Placeholder bibliography entries marked "to be verified" (recent arXiv benchmarks) must be checked.
 - Exact rule used to select the 526 benchmark clips; runtime of the final pipeline.
 - Selective-editing human study (88 pairs) is still collecting answers.
 - External benchmarks (VTE-Bench, VidScribe) were run with the earlier box-policy front end.
