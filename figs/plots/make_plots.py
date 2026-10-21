@@ -1,6 +1,6 @@
-"""Charts for the paper (vector PDF, TrueType fonts). Data: the evaluation JSONs of the final 526-clip run and the
+"""Charts for the paper (vector PDF, TrueType fonts). Data: the evaluation JSONs of the final 526-clip run (al_r1: one front-end pass, one evaluation job) and the
 SAT human-study counts (4 raters after the pre-stated quality-control exclusion; see the supplement).
-Usage: python make_plots.py <eval_vlm.json> <out_dir>"""
+Usage: python make_plots.py <eval_vlm.json> <out_dir> <bg.json>"""
 import json, sys
 from pathlib import Path
 import matplotlib
@@ -46,8 +46,12 @@ print("ok")
 
 # teaser side panel: headline numbers of the final 526-clip run (SteerVTE vs Banksy)
 fig, axs = plt.subplots(3, 1, figsize=(2.05, 2.35))
-for ax, (lab, a, b, fmt) in zip(axs, [("Readability (%) $\\uparrow$", 84.0, 91.4, "{:.1f}"), ("Net repairs (clips) $\\uparrow$", 158, 197, "{:d}"),
-                                      ("Background PSNR (dB) $\\uparrow$", 36.5, 43.0, "{:.1f}")]):
+read = lambda m: round(100 * sum(ok(m, u) for u in E["orig"]) / len(E["orig"]), 1)
+net = lambda m: sum((not ok("orig", u)) and ok(m, u) for u in E["orig"]) - sum(ok("orig", u) and not ok(m, u) for u in E["orig"])
+BG = json.load(open(sys.argv[3]))["per_clip"]                  # bg.json of the same run
+bg = lambda m: round(sum(v["psnr_bg"] for v in BG[m].values()) / len(BG[m]), 1)
+for ax, (lab, a, b, fmt) in zip(axs, [("Readability (%) $\\uparrow$", read("steervte"), read("B1"), "{:.1f}"), ("Net repairs (clips) $\\uparrow$", net("steervte"), net("B1"), "{:d}"),
+                                      ("Background PSNR (dB) $\\uparrow$", bg("steervte"), bg("B1"), "{:.1f}")]):
     ax.barh([1, 0], [a, b], color=[C["steervte"], C["B1"]], height=0.62, linewidth=0)
     ax.set_yticks([1, 0]); ax.set_yticklabels(["SteerVTE", "Banksy"]); ax.set_xticks([]); ax.spines["bottom"].set_visible(False)
     ax.set_title(lab, fontsize=8, loc="left", pad=2)

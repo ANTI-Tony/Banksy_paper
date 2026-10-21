@@ -3,7 +3,7 @@
 \input{tables/tab_sat}
 \input{figs/fig_sat}
 
-\paragraph{Where the gate enables SAT.} In the pass analysed here, the appearance gate enables SAT on 53 of the 526 clips: 23 of 93 neon clips, 11 of 65 screens, 9 of 86 signboards, 8 of 56 metal and 2 of 54 wooden signs, and none on glass or paper. Most rejections are clips without an accepted instance (203), followed by non-emissive text (133), no cross-validated gain (104) and gain in only one direction (33). Every enabled clip has a cross-validated error ratio below 0.75 in both directions, and the 15 rejected clips closest to the threshold lie between 0.756 and 0.795.
+\paragraph{Where the gate enables SAT.} In the pass analysed here, the appearance gate enables SAT on 53 of the 526 clips (in the run of \cref{tab:main}, on \rSatOn): 23 of 93 neon clips, 11 of 65 screens, 9 of 86 signboards, 8 of 56 metal and 2 of 54 wooden signs, and none on glass or paper. Most rejections are clips without an accepted instance (203), followed by non-emissive text (133), no cross-validated gain (104) and gain in only one direction (33). Every enabled clip has a cross-validated error ratio below 0.75 in both directions, and the 15 rejected clips closest to the threshold lie between 0.756 and 0.795.
 
 \paragraph{Effect.} On the enabled clips (\cref{tab:sat}), SAT reduces the appearance distance by a third ($-1.02$; better on 42 of 53 clips) for every material---screens 3.02$\to$1.33, neon 3.03$\to$2.02, wood 4.12$\to$2.21---without hurting readability or the background. It costs temporal stability: flicker rises by 0.15 and jitter by 0.81, because the transported appearance follows a per-frame distance field. On the full benchmark the readability is unchanged (90.5 vs.\ 90.3\%).
 

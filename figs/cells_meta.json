@@ -107,7 +107,7 @@
   "g085_zh_signboard_s8": {
    "orig": [
     "qual_g085_zh_signboard_s8_orig.jpg",
-    "夜市 Qingdao Night Market Promotion",
+    "夜市 Qingdao Night Market Fristreme",
     false
    ],
    "steervte": [
@@ -141,7 +141,7 @@
   "g105_zh_wood_s1": {
    "orig": [
     "qual_g105_zh_wood_s1_orig.jpg",
-    "小悒念滑",
+    "小粑念滑",
     false
    ],
    "steervte": [
@@ -197,7 +197,7 @@
    ],
    "steervte": [
     "qual_g007_en_glass_s2_steervte.jpg",
-    "FRESB BREAD",
+    "FRESD BREAD",
     false
    ],
    "B1": [
@@ -219,7 +219,7 @@
    ],
    "B1": [
     "qual_g090_zh_glass_s7_B1.jpg",
-    "南湖公园",
+    "NAMMEI/XAVAEI IS LIVE",
     false
    ]
   },
@@ -240,20 +240,20 @@
     true
    ]
   },
-  "g096_zh_paper_s0": {
+  "g077_zh_paper_s0": {
    "orig": [
-    "qual_g096_zh_paper_s0_orig.jpg",
-    "洗衣",
+    "qual_g077_zh_paper_s0_orig.jpg",
+    "出發 山泉",
     false
    ],
    "steervte": [
-    "qual_g096_zh_paper_s0_steervte.jpg",
-    "洗衣店",
-    true
+    "qual_g077_zh_paper_s0_steervte.jpg",
+    "出口 山具",
+    false
    ],
    "B1": [
-    "qual_g096_zh_paper_s0_B1.jpg",
-    "洗衣店",
+    "qual_g077_zh_paper_s0_B1.jpg",
+    "出口",
     true
    ]
   },
@@ -352,7 +352,7 @@
    ],
    "B1": [
     "fail_g010_en_neon_s5_B1.jpg",
-    "K STORE",
+    "K STOP",
     false
    ],
    "steervte": [
@@ -378,20 +378,20 @@
     true
    ]
   },
-  "g076_zh_neon_s7": {
+  "g032_en_signboard_s7": {
    "orig": [
-    "fail_g076_zh_neon_s7_orig.jpg",
-    "出口",
+    "fail_g032_en_signboard_s7_orig.jpg",
+    "WELCOME",
     true
    ],
    "B1": [
-    "fail_g076_zh_neon_s7_B1.jpg",
-    "备份",
+    "fail_g032_en_signboard_s7_B1.jpg",
+    "10%",
     false
    ],
    "steervte": [
-    "fail_g076_zh_neon_s7_steervte.jpg",
-    "出口",
+    "fail_g032_en_signboard_s7_steervte.jpg",
+    "WELCOME",
     true
    ]
   }
@@ -409,8 +409,8 @@
      "share_gt8_outside": 0.036
     },
     "B1": {
-     "mean_abs_outside": 1.1,
-     "share_gt8_outside": 0.0
+     "mean_abs_outside": 1.74,
+     "share_gt8_outside": 0.0001
     }
    }
   },

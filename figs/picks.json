@@ -25,7 +25,7 @@
   "glass_en": "g007_en_glass_s2",
   "glass_zh": "g090_zh_glass_s7",
   "paper_en": "g034_en_paper_s3",
-  "paper_zh": "g096_zh_paper_s0",
+  "paper_zh": "g077_zh_paper_s0",
   "screen_en": "g029_en_screen_s3",
   "screen_zh": "g078_zh_screen_s4"
  },
@@ -51,11 +51,11 @@
    "Second row missed; old text remains"
   ],
   [
-   "g076_zh_neon_s7",
-   "Neon glyph blurred"
+   "g032_en_signboard_s7",
+   "Lightbox: low contrast, text lost"
   ]
  ],
- "_note": "fig4 = random.Random(2027).choice per material x language among garbled originals outside the 40 development clips (not curated); teaser/fig7 chosen by hand to illustrate; teaser = SteerVTE wrong & Banksy right, ranked by Banksy appearance distance (mad), picked by eye from the top 8",
+ "_note": "fig4 = random.Random(2027).choice per material x language (one RNG, materials in figure order, EN then ZH) among garbled originals outside the 40 development clips, applied to the al_r1 evaluation (not curated; 13 of 14 picks equal those of the earlier run, paper_zh changed); teaser/fig7 chosen by hand to illustrate; teaser = SteerVTE wrong & Banksy right, ranked by Banksy appearance distance, picked by eye from the top 8 (still in the top 8 in al_r1); fig7 last three = clips broken in al_r1 (g076 was not broken in al_r1 and was replaced by g032)",
  "diff": [
   "g106_zh_paper_s6",
   "g008_en_signboard_s4",
