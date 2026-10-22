@@ -31,7 +31,7 @@ The two methods trade different qualities. \method leaves the background intact-
 
 \subsection{Edit locality}
 \label{sec:exp_local}
-\Cref{fig:diff} visualises where each method changes the video. Because \steer passes the whole clip through its generator, its difference to the original covers the entire frame, including edges of buildings and furniture far from the text; for \method, the difference is confined to the text region, and the residual elsewhere (1--2 grey levels) is the re-encoding of the output video. Inside the neighbourhood of the text, we additionally measure the \emph{collateral change}---the change outside both the old and the new glyphs---which is \rOursCollat{} grey levels for \method on the \rOursCollatN{} clips it edits; it cannot be computed for \steer, whose glyph coverage is unknown.
+\Cref{fig:diff} visualises where each method changes the video. Because \steer passes the whole clip through its generator, its difference to the original covers the entire frame, including edges of buildings and furniture far from the text; for \method, the difference is confined to the text region, and the residual elsewhere (1--2 grey levels) is the re-encoding of the output video. Inside the neighbourhood of the text, we additionally measure the collateral change---the change outside both the old and the new glyphs---which is \rOursCollat{} grey levels for \method on the \rOursCollatN{} clips it edits; it cannot be computed for \steer, whose glyph coverage is unknown.
 
 \subsection{The evidence gates}
 \label{sec:exp_gates}
