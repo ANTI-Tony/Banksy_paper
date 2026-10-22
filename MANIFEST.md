@@ -33,6 +33,7 @@ compute cluster (`$ROOT`); large data are not in this repository. Times are clus
 | second readers | Sec. 5.1, Tab. readers | reads the al_r1 outputs | InternVL (526 clips, 6 shards), Pixtral (295 English clips, 4 shards), Qwen re-read control (3 shards) on OSC (§4b) → `judge2/` | final |
 | VTE-Bench Real, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vte_real/B1` (8 clips shipped unchanged) | one evaluation run on OSC (§4b) | final |
 | VidScribe V2V, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vs_v2v/B1` (1 clip shipped unchanged) | one evaluation run on OSC (§4b) | final |
+| Banksy-V (verified selection; `composite_local.py`, `assemble_hybrid.py`) | Sec. 5.9, Tab. hybrid | `hyb/steer_local`, `hyb/steer2_local` (composites of the SteerVTE seeds) | one evaluation run on OSC over 8 methods (`hyb/`); verifier = InternVL reads of that run, scorer = Qwen + Pixtral | run 1 final; post-hoc V1.1 in run 2 (`hyb2/`) pending |
 | full8 / sat53 / sat53p | Tab. SAT, Fig. SAT, Sec. 5.4 | `align/full8`, `align/sat53*` | their own jobs | historical, self-contained |
 | full6 / full7 / T / D | Tab. render (two tables) | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
 | refiner (fuse) | Tab. refiner, suppl. ladder | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
@@ -110,6 +111,12 @@ The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluation
 | `bench_b1/vs_v2v/eval/bg.json` | `a5eb118da113d60bfc41053a6136079f491d9db2791956cb2a8012ee565e109f` |
 | `bench_b1/vs_v2v/eval/temporal.json` | `e0a349993bbb999c96dc56bbe574480a5774186616686a3d7388f474117e1a57` |
 | `bench_b1/vs_v2v/eval/mat_stats.json` | `79f9b9442824fe15ac5aa8952cdd870410d93763492342141fce46c2d5e902a2` |
+| `hyb/eval_vlm.json` (Banksy-V run 1) | `478dc475f1618f1f8471daeb19aeb94910551a90e455295582c634cd31ab8faf` |
+| `hyb/eval_vlm2_internvl.json` (Banksy-V run 1) | `b1a14396e3ce07464c6f1b74dca81365497461aedfa68851a32ba94146d35af3` |
+| `hyb/eval_vlm2_pixtral_en.json` (Banksy-V run 1) | `f67f0f628bb2115d0a85664bd5d538eed71b80e54414b4a29d21fc605f5aa35f` |
+| `hyb/mat_stats.json` (Banksy-V run 1) | `f37be2ef2e66fc3a27734af2c39482b0f406b25bf10171e6e0ce489bf97eb8f1` |
+| `hyb/bg.json` (Banksy-V run 1) | `e10e8ed1635e2bda6ffd97df78581479f3521f1f21d579c86a5979ed526f15a9` |
+| `hyb/temporal.json` (Banksy-V run 1) | `4168025f83d53505cabdf2e752e708e173a3eeca519e3334a69b0f032de3b2c2` |
 
 ## 7. How the paper's numbers are produced
 
