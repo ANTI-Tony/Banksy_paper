@@ -29,10 +29,10 @@ compute cluster (`$ROOT`); large data are not in this repository. Times are clus
 | Run | Where the numbers appear | Outputs | Evaluation job | Status |
 |---|---|---|---|---|
 | **al_r1** (one front-end pass: B1, B1f, R1, R1f) | Tab. 1, Tab. 7, Fig. 1 panel, Fig. 3, Secs. 5.1–5.3, 5.7, 6, suppl. Tab. composition, failure list | `align/r1/{B1,B1f,R1,R1f}/<uid>/fixed.mp4` | `al_r1_eval` (job 23102605, Delta A40) | final |
-| sel2 (selective editing B0–B4; 427 clips from `align/sel` + 99 two-row clips from `align/selfix`) | Tab. 5 | `align/sel2/{B0..B4}` (symlinks) | `al_sel2_eval` → `align/sel2/ev1/` | running (one job for all rows) |
-| second reader | Sec. 5 / suppl. | reads the al_r1 outputs | `al_judge2` (InternVL, 526 clips), `al_judge2p` (Pixtral, 295 English clips) → `judge2/` | running |
-| VTE-Bench Real, frozen B1 | Sec. 5.8 | `bench_b1/vte_real/B1` | `vte_b1_eval` | front end done (92/100 located) |
-| VidScribe V2V, frozen B1 | Sec. 5.8 | `bench_b1/vs_v2v/B1` | `vs_b1_eval` | front end done (43/44 located) |
+| sel2 (selective editing B0–B4; 427 clips from `align/sel` + 99 two-row clips from `align/selfix`) | Tab. 5 | `align/sel2/{B0..B4}` (symlinks) | one evaluation run (§4b): reads + temporal + appearance + background on OSC, decisions + collateral on Delta → `align/sel2/ev1/` | final |
+| second readers | Sec. 5.1, Tab. readers | reads the al_r1 outputs | InternVL (526 clips, 6 shards), Pixtral (295 English clips, 4 shards), Qwen re-read control (3 shards) on OSC (§4b) → `judge2/` | final |
+| VTE-Bench Real, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vte_real/B1` (8 clips shipped unchanged) | one evaluation run on OSC (§4b) | final |
+| VidScribe V2V, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vs_v2v/B1` (1 clip shipped unchanged) | one evaluation run on OSC (§4b) | final |
 | full8 / sat53 / sat53p | Tab. SAT, Fig. SAT, Sec. 5.4 | `align/full8`, `align/sat53*` | their own jobs | historical, self-contained |
 | full6 / full7 / T / D | Tab. render (two tables) | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
 | refiner (fuse) | Tab. refiner, suppl. ladder | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
@@ -53,6 +53,23 @@ Appearance distances are normalised within each evaluation job and are compared 
 | Software | Python venv on Delta x86: transformers 4.57.6, torch 2.8.0+cu128, Pillow 9.5.0, OpenCV 4.12.0, numpy 1.26.4; GPU NVIDIA A40 |
 | Known non-determinism | (i) the reader re-reading identical videos in another job: 98/99 identical verdicts; (ii) the appearance estimator uses unseeded k-means++: per-clip test–retest SD 0.47 on 517 byte-identical outputs, mean shift +0.021 [−0.020, +0.062]; (iii) the front end's GPU OCR is not bit-reproducible across passes |
 
+## 4b. Second environment (second readers, Table 5 re-read, external benchmarks)
+
+The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluations ran on OSC Pitzer (account PCS0296).
+
+| Item | Value |
+|---|---|
+| Hardware | NVIDIA V100 32 GB (`gpu-exp`), one GPU per job; CPU-only metrics on `cpu-exp` |
+| Software | uv venv, Python 3.11.17: torch 2.8.0+cu126, transformers 4.57.6, Pillow 9.5.0, opencv-python-headless 4.12.0.88 (installed without dependencies, running on numpy 1.26.4 as on Delta), numpy 1.26.4, opencc-python-reimplemented 0.1.7, easyocr 1.7.2, scikit-image 0.24.0 |
+| Model files | same revisions as Delta; `model.safetensors.index.json` sha256 identical for all three readers |
+| Crop equality | the evaluation crops (450 crops: 30 clips × 3 methods × 5 frames, raw and resized) are byte-identical to the first reader's environment (max abs diff 0) |
+| Precision | bf16 as in the protocol; V100 has no fused bf16 attention, so PyTorch falls back to the math kernel; batch 1 for InternVL / Pixtral, 8 for Qwen (left padding with attention mask) |
+| Sharding | reads split over clips (`SHARD=k NSHARD=n`) on identical GPUs and merged with `tools/merge_shards.py` (md5 9e2dfba8; checks for overlaps and a single reader) |
+| Re-read control | the first reader (Qwen) re-read the Table 1 outputs in this environment: 1576 of 1578 clip–method verdicts equal (original and SteerVTE 100%, B1 two clips wrong → right) |
+| Evaluator patch | `src/sys_temporal.py` zero-division guard for static clips (frozen repository commit `6bf2a64`, md5 721c40eb; values unchanged wherever the old code returned one) |
+| Table 5 split | readability (7 methods, sharded), temporal, appearance and background on OSC, each over all 526 clips in one process; decisions and collateral change computed once on Delta (`align/sel2/ev1_cpu`, CPU-only, deterministic) from the same merged tree |
+| Job script | `osc_eval.sbatch` (md5 aef51d4b); OSC usage for this round: 17.6 V100 GPU-hours, 1.3 CPU-node hours |
+
 ## 5. Seeds
 
 | Use | Seed |
@@ -72,7 +89,27 @@ Appearance distances are normalised within each evaluation job and are compared 
 | `align/r1/bg.json` | `5493389e48498b1497f4e13a57bf9eb6087686965c382fe76b6b513131bcb92a` |
 | `align/r1/collateral.json` | `1fd8ef657826b6cb1800fc44908f42a466432028b06570477fae433bc3b028b7` |
 | `align/r1/decisions.json` | `990a09a548ccfcdec6eb10cdf7d9f35bdcb64b489f05d665517d12d22dc61ba6` |
-| second reader, sel2/ev1, external | to be added when the jobs finish |
+| `judge2/eval_vlm2_internvl_r1.json` | `3753c6627250901d579ca19bc6c563d8e28afdd1b256e6f0c0cccf7419f601af` |
+| `judge2/eval_vlm2_pixtral_r1_en.json` | `b9f4557fa3eea287c87a3eed7e83fdf89b91f22d3c4881a72fe43ef91b1d9fca` |
+| `judge2/eval_vlm_qwen_osc_r1.json` | `5fa37936e6cd5707f20d941214bb28e2c00fa0e27af0b1f28c35102e63ea6ef7` |
+| `align/sel2/ev1/eval_vlm.json` | `5a4974ae960c1852830ac4340e28e3e0b20e98391fe37e4e93d76aa9c40b11f6` |
+| `align/sel2/ev1/temporal.json` | `19870687f72277cb96f55bdba6b0d522cbdec404ef9e518e8783e13fb5258f53` |
+| `align/sel2/ev1/mat_stats.json` | `56caa263e104ce0201042bcc7ca2d37608890d8b5ecd74ddcf1d7c716a1873c8` |
+| `align/sel2/ev1/bg.json` | `de0f80d390b6428dc99e558b7e9e3e111de4bca5ad8cda9308fe92c63055e6fc` |
+| `align/sel2/ev1/decisions.json` | `ff85c45aaced19db0035f8e24a68eae730df843c5fde79864ea36f09d2688ea5` |
+| `align/sel2/ev1/collateral.json` | `32f4b35a0ae59fad2f000ab516879c466aac2cb18c4d2522a1c0ce103dfcd3ab` |
+| `bench_b1/vte_real/eval/eval_vlm.json` | `54e7163714a37c49425f376bd335a93e7a5804ddba19430797969ee10de7b501` |
+| `bench_b1/vte_real/eval/eval_vlm2_internvl.json` | `c9732166d7df8cf5fa7549fa4328081c3af44bca58193b4f0585e3f1dd0a56d3` |
+| `bench_b1/vte_real/eval/eval_easyocr.json` | `351f56ade783064bd53e802717597cae6e043e78f8383d4eb24ba2b8c2bd4c29` |
+| `bench_b1/vte_real/eval/bg.json` | `fb74eeacc6910c5e7cb42e7b5cc61651de4d4563e8008e22859a257f3acfbb73` |
+| `bench_b1/vte_real/eval/temporal.json` | `6926644d03219e9da682b6218ead00387180109ed6096c4c1b216bbd6b9b7615` |
+| `bench_b1/vte_real/eval/mat_stats.json` | `65565f6380468cd3b7ae69efc62b96162dbdbecf068c1fee3a202fe6e85e72e8` |
+| `bench_b1/vs_v2v/eval/eval_vlm.json` | `aee75af1c868433fae9968688404f44bb7e97bcd0bb8b3df80a16fce10448646` |
+| `bench_b1/vs_v2v/eval/eval_vlm2_internvl.json` | `28854536c582cc5dccf8e55b224a5b05149215b0db0df9c40626da9f299b2a36` |
+| `bench_b1/vs_v2v/eval/eval_easyocr.json` | `93c8229449465be36ad6983da192269550f8bd9e8da42cc1953200c13ed494a5` |
+| `bench_b1/vs_v2v/eval/bg.json` | `a5eb118da113d60bfc41053a6136079f491d9db2791956cb2a8012ee565e109f` |
+| `bench_b1/vs_v2v/eval/temporal.json` | `e0a349993bbb999c96dc56bbe574480a5774186616686a3d7388f474117e1a57` |
+| `bench_b1/vs_v2v/eval/mat_stats.json` | `79f9b9442824fe15ac5aa8952cdd870410d93763492342141fce46c2d5e902a2` |
 
 ## 7. How the paper's numbers are produced
 
