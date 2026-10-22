@@ -55,10 +55,19 @@
    "Lightbox: low contrast, text lost"
   ]
  ],
- "_note": "fig4 = random.Random(2027).choice per material x language (one RNG, materials in figure order, EN then ZH) among garbled originals outside the 40 development clips, applied to the al_r1 evaluation (not curated; 13 of 14 picks equal those of the earlier run, paper_zh changed); teaser/fig7 chosen by hand to illustrate; teaser = SteerVTE wrong & Banksy right, ranked by Banksy appearance distance, picked by eye from the top 8 (still in the top 8 in al_r1); fig7 last three = clips broken in al_r1 (g076 was not broken in al_r1 and was replaced by g032)",
+ "_note": "fig4 = random.Random(2027).choice per material x language (one RNG, materials in figure order, EN then ZH) among garbled originals outside the 40 development clips, applied to the al_r1 evaluation (not curated; 13 of 14 picks equal those of the earlier run, paper_zh changed); teaser/fig7 chosen by hand to illustrate; teaser = SteerVTE wrong & Banksy right, ranked by Banksy appearance distance, picked by eye from the top 8 (still in the top 8 in al_r1); fig7 last three = clips broken in al_r1 (g076 was not broken in al_r1 and was replaced by g032); wins = hand-picked favourable examples (user request 10-22) from the 41 non-dev clips wrong in orig and SteerVTE and right in B1 under both readers (Qwen al_r1 + InternVL), chosen for clear SteerVTE errors and clean Banksy output, diverse materials",
  "diff": [
   "g106_zh_paper_s6",
   "g008_en_signboard_s4",
   "g085_zh_signboard_s0"
- ]
+ ],
+ "wins": [
+  "g007_en_glass_s7",
+  "g065_zh_metal_s9",
+  "g006_en_paper_s7",
+  "g105_zh_wood_s2",
+  "g101_zh_signboard_s3",
+  "g064_zh_screen_s8"
+ ],
+ "wins_caption": "\\textbf{Clips that only Banksy repairs} (selected by hand). The examples are chosen among the 41 clips outside the development set that both readers judge wrong in the original and in SteerVTE's output and right in Banksy's; the reverse case---right with SteerVTE and wrong with Banksy under both readers---occurs in 8 clips (failure modes in \\cref{fig:fail}). Each cell is the same crop of frame 24, with the first reader's transcription below (\\textcolor{okgreen}{\\ding{51}}~correct, \\textcolor{badred}{\\ding{55}}~wrong)."
 }

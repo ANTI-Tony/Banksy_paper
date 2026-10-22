@@ -292,6 +292,110 @@
    ]
   }
  },
+ "wins": {
+  "g007_en_glass_s7": {
+   "orig": [
+    "wins_g007_en_glass_s7_orig.jpg",
+    "FREESEY BREAD",
+    false
+   ],
+   "steervte": [
+    "wins_g007_en_glass_s7_steervte.jpg",
+    "FREESEY BREAD",
+    false
+   ],
+   "B1": [
+    "wins_g007_en_glass_s7_B1.jpg",
+    "FRESH BREAD",
+    true
+   ]
+  },
+  "g065_zh_metal_s9": {
+   "orig": [
+    "wins_g065_zh_metal_s9_orig.jpg",
+    "使判二",
+    false
+   ],
+   "steervte": [
+    "wins_g065_zh_metal_s9_steervte.jpg",
+    "便刺店",
+    false
+   ],
+   "B1": [
+    "wins_g065_zh_metal_s9_B1.jpg",
+    "便利店",
+    true
+   ]
+  },
+  "g006_en_paper_s7": {
+   "orig": [
+    "wins_g006_en_paper_s7_orig.jpg",
+    "FRESY BREAD",
+    false
+   ],
+   "steervte": [
+    "wins_g006_en_paper_s7_steervte.jpg",
+    "FRESY BREAD",
+    false
+   ],
+   "B1": [
+    "wins_g006_en_paper_s7_B1.jpg",
+    "FRESH BREAD",
+    true
+   ]
+  },
+  "g105_zh_wood_s2": {
+   "orig": [
+    "wins_g105_zh_wood_s2_orig.jpg",
+    "小吧灯滑 COFFEE",
+    false
+   ],
+   "steervte": [
+    "wins_g105_zh_wood_s2_steervte.jpg",
+    "小吧地滑",
+    false
+   ],
+   "B1": [
+    "wins_g105_zh_wood_s2_B1.jpg",
+    "小心地滑",
+    true
+   ]
+  },
+  "g101_zh_signboard_s3": {
+   "orig": [
+    "wins_g101_zh_signboard_s3_orig.jpg",
+    "公園 CONOG",
+    false
+   ],
+   "steervte": [
+    "wins_g101_zh_signboard_s3_steervte.jpg",
+    "公园 COKOO",
+    false
+   ],
+   "B1": [
+    "wins_g101_zh_signboard_s3_B1.jpg",
+    "公园",
+    true
+   ]
+  },
+  "g064_zh_screen_s8": {
+   "orig": [
+    "wins_g064_zh_screen_s8_orig.jpg",
+    "便判品",
+    false
+   ],
+   "steervte": [
+    "wins_g064_zh_screen_s8_steervte.jpg",
+    "便判台",
+    false
+   ],
+   "B1": [
+    "wins_g064_zh_screen_s8_B1.jpg",
+    "便利店",
+    true
+   ]
+  }
+ },
  "fail": {
   "g043_en_glass_s1": {
    "orig": [
