@@ -33,6 +33,7 @@ compute cluster (`$ROOT`); large data are not in this repository. Times are clus
 | second readers | Sec. 5.1, Tab. readers | reads the al_r1 outputs | InternVL (526 clips, 6 shards), Pixtral (295 English clips, 4 shards), Qwen re-read control (3 shards) on OSC (§4b) → `judge2/` | final |
 | VTE-Bench Real, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vte_real/B1` (8 clips shipped unchanged) | one evaluation run on OSC (§4b) | final |
 | VidScribe V2V, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vs_v2v/B1` (1 clip shipped unchanged) | one evaluation run on OSC (§4b) | final |
+| Material generator v0 (research track; `factory_v2_pair.py`, `make_pairs.py`, `matgen_v0.py`, `matgen_apply.py`, `analyze_r2.py`) | Sec. 5.7 (negative result), Fig. matgen | synthetic pairs `factory/{train,val}`; `r2_raw` (frozen B1 RAW caches of the 129 R2 clips); `r2_flat`, `r2_matgen` | training on OSC V100 (20k steps, seed 0); validation `runs/v0/eval_val.json`; one R2 evaluation run `r2_eval/` (Qwen reads, temporal, appearance, background) | R1 not met (0.482 < 0.50), R2 not met; capacity run `v1_base128` pending |
 | Banksy-V (verified selection; `composite_local.py`, `assemble_hybrid.py`) | Sec. 5.9, Tab. hybrid | `hyb/steer_local`, `hyb/steer2_local` (composites of the SteerVTE seeds) | one evaluation run on OSC over 8 methods (`hyb/`); verifier = InternVL reads of that run, scorer = Qwen + Pixtral | run 2 (`hyb2/`, 8 methods incl. the post-hoc V1.1) is Tab. hybrid; run 1 (`hyb/`) reported in the supplement |
 | full8 / sat53 / sat53p | Tab. SAT, Fig. SAT, Sec. 5.4 | `align/full8`, `align/sat53*` | their own jobs | historical, self-contained |
 | full6 / full7 / T / D | Tab. render (two tables) | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
@@ -124,6 +125,12 @@ The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluation
 | `hyb2/bg.json` (Banksy-V run 2, Tab. hybrid) | `6f9c1fa56493193e6d930f051d43467c551616520ce6715110d7523b9869bb75` |
 | `hyb2/temporal.json` (Banksy-V run 2, Tab. hybrid) | `9313457582e5a389834751332f1e4739c40c98d5a6d040f922da6d96ba44cc76` |
 | `hyb/temporal_reenc.json` (re-encoding diagnostic: SteerVTE, re-encoded SteerVTE, composites, B1; temporal metric only) | `5ae0feecbc36d97e4be76915453f39f81265bb1b57488b01e2f942659960d7b5` |
+| `r2_eval/eval_vlm.json` (material generator v0; R2 run / validation / weights) | `b97f8cfe1968d456145b64da3e9bc3b40d04b9ceef229702466866803be0c231` |
+| `r2_eval/mat_stats.json` (material generator v0; R2 run / validation / weights) | `6bad2c1dc83c166897d0f4afb3ba5b3f2146a28b0ca766be94a3bbcf3df81ec2` |
+| `r2_eval/bg.json` (material generator v0; R2 run / validation / weights) | `8656be4e8cd067aed8c86efa458f70283b63afe0ca63064739cd3f0f286a8f93` |
+| `r2_eval/temporal.json` (material generator v0; R2 run / validation / weights) | `88a448ec60895efc78d0eea090e03c5f3e586c67be94f1501691b6702b013d94` |
+| `matgen_v0/eval_val.json` (material generator v0; R2 run / validation / weights) | `7d89f2f9be11f975e656c1f70362e3db4c9a193d867128d1fc950fe5fc0b2016` |
+| `matgen_v0/ckpt_20000.pt` (material generator v0; R2 run / validation / weights) | `9abb5c9c7c37dcebfcf61c6d15f2b645f1195d31dbe0fee4fbb6abe1272d829e` |
 
 ## 7. How the paper's numbers are produced
 

@@ -1,0 +1,15 @@
+\begin{figure}[t]
+\centering
+\setlength{\tabcolsep}{1.2pt}\renewcommand{\arraystretch}{0.6}
+\begin{tabular}{@{}m{2.4cm}ccc@{}}
+&\footnotesize\textbf{Original} & \footnotesize\textbf{Banksy} & \footnotesize\textbf{Generator} \\[2pt]
+\scriptsize closer than Banksy (metal) & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g117_zh_metal_s1_orig.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g117_zh_metal_s1_B1.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g117_zh_metal_s1_matgen.jpg} \\
+&\parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{\zh{邮局}}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{邮局}}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{邮局}}} \\[3pt]
+\scriptsize farther (LED sign) & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g085_zh_signboard_s8_orig.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g085_zh_signboard_s8_B1.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g085_zh_signboard_s8_matgen.jpg} \\
+&\parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{\zh{夜市} Qingdao Night Marke}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{夜市}}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{\zh{夜市}}} \\[3pt]
+\scriptsize unreadable (poster) & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g025_en_paper_s2_orig.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g025_en_paper_s2_B1.jpg} & \includegraphics[width=0.3\linewidth]{figs/cells/mg_g025_en_paper_s2_matgen.jpg} \\
+&\parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{PHARMATCE}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{okgreen}{\ding{51}}\,\texttt{PHARMACY}} & \parbox[t]{0.3\linewidth}{\centering\scriptsize \textcolor{badred}{\ding{55}}\,\texttt{PHARMACY}} \\[3pt]
+\end{tabular}
+\caption{\textbf{The material generator on real clips} (gate R2; three hand-picked examples; Original / Banksy / generator, with the reader's transcription). Trained only on rendered pairs, the generator keeps the glyphs (their alpha is an input) but writes them with low contrast and desaturated colour on most carriers, which the appearance distance and the reader both penalise; it is closer to the original than Banksy only on metal.}
+\label{fig:matgen}
+\end{figure}
