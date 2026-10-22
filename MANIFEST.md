@@ -123,6 +123,7 @@ The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluation
 | `hyb2/mat_stats.json` (Banksy-V run 2, Tab. hybrid) | `6e8867ea6cac03ff08ddda6074de77d1acba08cff639547bfbc59e41ed62b782` |
 | `hyb2/bg.json` (Banksy-V run 2, Tab. hybrid) | `6f9c1fa56493193e6d930f051d43467c551616520ce6715110d7523b9869bb75` |
 | `hyb2/temporal.json` (Banksy-V run 2, Tab. hybrid) | `9313457582e5a389834751332f1e4739c40c98d5a6d040f922da6d96ba44cc76` |
+| `hyb/temporal_reenc.json` (re-encoding diagnostic: SteerVTE, re-encoded SteerVTE, composites, B1; temporal metric only) | `5ae0feecbc36d97e4be76915453f39f81265bb1b57488b01e2f942659960d7b5` |
 
 ## 7. How the paper's numbers are produced
 
