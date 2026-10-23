@@ -1,0 +1,45 @@
+\subsubsection{Main results in full}
+\label{sec:exp_full}
+
+\paragraph{Protocol.} \Cref{tab:main}, \cref{tab:reuse} and every number in \cref{sec:main,sec:exp_local,sec:exp_neg} come from one front-end pass over the 526 benchmark clips with the final system and the variants of \cref{sec:exp_neg}, which share the OCR, tracking and instance estimation and are therefore paired clip by clip; these outputs, the original clips and \steer's outputs were read by the same reader in one evaluation job (\cref{sec:metrics}). Every other table comes from its own front-end pass and its own evaluation run, named in its caption (\cref{tab:selective,tab:external,tab:readers} were evaluated on a second machine whose decoded crops are byte-identical to the first; supplement); because the appearance distance is normalised within each run, it is compared only within a table. Paired differences are reported with 95\% bootstrap confidence intervals over clips~\cite{efron1994bootstrap} (10{,}000 resamples) and readability differences with exact McNemar tests~\cite{mcnemar1947}. Forty clips were inspected while developing the selective-editing components (\cref{sec:exp_sel}); \cref{tab:main} reports all clips and, separately, the 486 clips that were never inspected.
+
+\paragraph{Baseline.} \steer~\cite{zeng2026steervte} is the strongest published video text editor; it adds glyph and style conditioning to a frozen VACE-14B backbone~\cite{jiang2025vace} and is trained on one million triplets. We ran the released model on every clip with the hint box as editing mask and the target as text, at the same resolution and length as the input. Its outputs are generated end to end, so they are evaluated as they are.
+
+\input{tables/tab_main}
+
+\paragraph{Main comparison.}
+\label{sec:main}
+\Cref{tab:main} compares \method with \steer and with the unedited clips. \method makes \rOursRead\% of the clips readable, \rReadGain{} points more than \steer (\rOnlyOurs{} clips are correct only with \method, \rOnlySteer{} only with \steer; McNemar $p=\rMcNemarP$), and turns \rOursFixed{} of the \rGarbled{} garbled clips into correct ones. It is not free of damage: it breaks \rOursBroken{} of the \rOrigCorrect{} originally correct clips where \steer breaks \rSteerBroken, so its advantage in net repairs (\rOursNet{} vs.\ \rSteerNet) is smaller than in repairs alone. The picture is unchanged on the 486 clips outside the development set (\rOursReadND\% vs.\ \rSteerReadND\%; \rOursNetND{} vs.\ \rSteerNetND{} net repairs).
+
+The two methods trade different qualities. \method leaves the background intact---its PSNR outside the text region is \rBGDiff\,dB higher (95\% CI [\rBGDiffLo, \rBGDiffHi]; higher on \rBGHigherPct\% of the clips)---and its strokes jitter less (edge jitter \rOursJitter{} vs.\ \rSteerJitter), because every glyph is placed once on the tracked carrier. \steer's text region flickers less (\rSteerFlicker{} vs.\ \rOursFlicker) and, above all, its text looks more like the original: its appearance distance is \rSteerMad{} against \rOursMad{} for \method. We analyse this gap in \cref{sec:limits}.
+
+\Cref{fig:material} breaks readability down by carrier material. \method is ahead of \steer on all seven materials; the largest gains are on signboards (+\rGainSignboard{} points) and neon (+\rGainNeon), where \steer most often keeps the garbled characters, and the smallest on metal (+\rGainMetal) and wood (+\rGainWood). By language, \method reaches \rOursEn\% on the \rEnN{} English and \rOursZh\% on the \rZhN{} Chinese clips (\steer: \rSteerEn\% and \rSteerZh\%). \Cref{fig:qual} shows randomly sampled examples, including two failures of \method (\zh{公园} on neon, \zh{花店} on glass); \cref{fig:wins} shows selected clips that only \method repairs, a case about five times as frequent as the reverse (41 vs.\ 8 clips outside the development set under both readers).
+
+\input{tables/tab_readers}
+\paragraph{A second reader.} Readability depends on the reader, so we registered a re-reading of the outputs of \cref{tab:main} by readers from other model families, with identical crops, frames, prompt, decoding and scoring, and a decision rule fixed in advance: the advantage counts as reader-robust only if the main second reader, InternVL2.5-8B (InternViT vision encoder, InternLM2.5 language model), finds \method more readable than \steer with $p<0.05$ (\cref{tab:readers}). It does: \jIvlOurs\% against \jIvlSteer\% (\jIvlOnlyOurs{} vs.\ \jIvlOnlySteer{} discordant clips, McNemar $p=\jIvlP$; \jIvlOursNet{} vs.\ \jIvlSteerNet{} net repairs), although the margin is smaller than under the first reader and, split by language, significant only for Chinese (\jIvlZhOurs\% vs.\ \jIvlZhSteer\%, $p=\jIvlZhP$; English \jIvlEnOurs\% vs.\ \jIvlEnSteer\%, $p=\jIvlEnP$). InternVL is stricter with every method and agrees with the first reader on about 91\% of the clip--method verdicts. A third reader, Pixtral-12B, cannot read Chinese---it invents unrelated text on every Chinese crop---and was registered for the 295 English clips only; there it finds no advantage (\jPixOurs\% vs.\ \jPixSteer\%, $p=\jPixP$). Most of its errors on \method's outputs are correct transcriptions followed by invented text (\jPixExtraOurs\% of the frames, against \jPixExtraSteer\% for \steer), which exact matching counts as wrong; when a frame only has to contain the target (an exploratory criterion defined after the reads), Pixtral finds the two methods level (\jPixContOurs\% vs.\ \jPixContSteer\%). The second readers ran on different GPUs from the first reader, with byte-identical crops; the first reader re-reading the outputs on those GPUs reproduces \jQrAgreeOurs--100\% of its verdicts per method, so the hardware does not explain these differences.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figs/plots/material_readability.pdf}
+\caption{\textbf{Readability by carrier material} (all 526 clips; 54 to 96 clips per material).}
+\label{fig:material}
+\end{figure}
+
+\input{figs/fig_qual}
+\input{figs/fig_wins}
+\input{figs/fig_diff}
+
+\subsubsection{Edit locality}
+\label{sec:exp_local}
+\Cref{fig:diff} visualises where each method changes the video. Because \steer passes the whole clip through its generator, its difference to the original covers the entire frame, including edges of buildings and furniture far from the text; for \method, the difference is confined to the text region, and the residual elsewhere (1--2 grey levels) is the re-encoding of the output video. Inside the neighbourhood of the text, we additionally measure the collateral change---the change outside both the old and the new glyphs---which is \rOursCollat{} grey levels for \method on the \rOursCollatN{} clips it edits; it cannot be computed for \steer, whose glyph coverage is unknown.
+
+\subsubsection{The evidence gates}
+\label{sec:exp_gates}
+\paragraph{Preservation gate.} The gate skips \rSkipped{} clips, and the reader confirms all \rSkippedOK{} as correct (no false skip; the pre-registered limit was 2\%). Its effect on breakage is measured in the selective-editing pass (\cref{tab:selective}), where it is the only difference between B0 and B1: it restores \sRestored{} of the \sBrokenBzero{} originally correct clips that B0 breaks and loses none (\sBrokenBzero{} vs.\ \sBrokenBone{} broken clips, readability \sReadBzero\% vs.\ \sReadBone\%). Its recall is low by design: it fires on \rSkipped{} of the \rOrigCorrect{} clips the reader judges correct, because the pipeline's OCR rarely reads stylised originals---neon italics, extruded letters, condensed faces---with the required consistency. All \rOursBroken{} originally correct clips that \method breaks are such cases (\cref{sec:failures}).
+
+
+
+
+
+
+

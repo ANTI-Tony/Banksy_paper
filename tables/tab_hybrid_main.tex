@@ -1,0 +1,18 @@
+% compact version of tables/tab_hybrid.tex for the 8-page main paper (same run, same numbers); the full table is in the supplement
+\begin{table}[t]
+\centering\small
+\caption{\textbf{Verified selection between \method and \steer} (526 clips, one evaluation run; the full table with ablations is in the supplement, Sec.~B). Banksy-V keeps the clip when the preservation gate fires, otherwise takes a \steer output whose text an independent verifier (InternVL2.5-8B) reads as the target, composited locally into the original, and falls back to \method. W/L: clips correct only with the system / only with \method.}
+\label{tab:hybrid}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & Read.\ $\uparrow$ & Broken $\downarrow$ & Net $\uparrow$ & W/L & Appear.\ $\downarrow$ & BG PSNR $\uparrow$ \\
+\midrule
+\method (B1) & 91.8 & 12 & 201 & -- & 3.34 & 42.52 \\
+\steer & 84.0 & 5 & 160 & 29/70 & 2.37 & 36.49 \\
+Banksy-V (verified, local) & 96.4 & 0 & 225 & 30/6 & 2.67 & 41.74 \\
+Oracle selection (upper bound) & 98.1 & 0 & 234 & 34/1 & 2.70 & 41.74 \\
+\bottomrule
+\end{tabular}}
+\end{table}

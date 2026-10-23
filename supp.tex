@@ -1,0 +1,75 @@
+% Supplementary material (separate PDF). Sections are lettered; references to the main paper (main8.pdf) resolve through xr.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage[review]{cvpr}
+\input{preamble}
+
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{xr}
+\externaldocument{main8}         % labels that exist only in the main paper resolve to its numbers
+
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+
+% lettered sections, S-numbered floats
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
+
+\title{Supplementary Material for\\Banksy: Evidence-Gated Repair of Garbled Text in AI-Generated Videos}
+
+\author{Anonymous CVPR submission\\
+Paper ID \paperID}
+
+\begin{document}
+\maketitle
+
+\noindent This document contains the full description of the task, metrics and pipeline (Sec.~A), the complete experimental sections with every table (Sec.~B), the negative results in full (Sec.~C), the glyph-free reconstruction round (Sec.~D), all pre-registrations (Sec.~E), the human studies (Sec.~F), the reproducibility audits and manifest (Sec.~G) and the failure cases (Sec.~H). Section, table and figure numbers of the main paper are cited as ``main paper Sec./Tab./Fig.''.
+
+\section{Task, metrics and pipeline in full}
+\label{sec:supp_full}
+\input{sec/X_task_full}
+\input{sec/X_method_full}
+\input{sec/X_suppl_bench}
+
+\section{Complete experimental sections}
+\label{sec:supp_exp}
+\input{sec/X_main_full}
+\input{sec/5b_frontend}
+\input{sec/5c_sat}
+\input{sec/5d_selective}
+\input{sec/5h_hybrid}
+\input{sec/5f_external}
+\input{sec/X_analysis_full}
+
+\section{Negative results in full}
+\label{sec:supp_neg}
+\input{sec/5e_refiner}
+\input{sec/5g_negative}
+
+\input{sec/X_suppl_l3}
+
+\section{Pre-registrations}
+\label{sec:supp_prereg_all}
+\input{sec/X_suppl_prereg}
+
+\input{sec/X_suppl_human}
+
+\section{Reproducibility}
+\label{sec:supp_repro}
+\input{sec/X_suppl_reader}
+
+\input{sec/X_suppl_fail}
+
+\input{sec/X_suppl_results}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\end{document}
