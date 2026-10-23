@@ -2,6 +2,7 @@
 \centering\small\setlength{\tabcolsep}{4pt}
 \caption{Photometric domain-alignment ablation of the material generator (frozen v0 weights, the 129 R2 clips, one evaluation run; appearance distance normalised within this run and not comparable to other tables). P1 maps a clip's reference crop to the training statistics before the model and undoes the map on its output; P2 matches the predicted ink's colour statistics to the source text's on non-emissive clips; the flat paste is the geometry pipeline alone. The original is the garbled input.}
 \label{tab:r2p}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
 Row & Read\,$\uparrow$ & Appear.\,$\downarrow$ & BG\,$\uparrow$ & Flicker\,$\downarrow$ & Jitter\,$\downarrow$\\
@@ -26,5 +27,5 @@ Generator v0 (P0, as registered) & 76.0 & 2.97 & 41.5 & 2.41 & 8.56\\
 + output calibration (P2) & 88.0 & 2.11 & 41.5 & 2.47 & 8.89\\
 + both (P12) & 84.0 & 2.00 & 41.5 & 2.49 & 9.04\\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
