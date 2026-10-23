@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Photometric domain-alignment ablation of the material generator (frozen v0 weights, the 129 R2 clips, one evaluation run; appearance distance normalised within this run and not comparable to other tables). P1 maps a clip's reference crop to the training statistics before the model and undoes the map on its output; P2 matches the predicted ink's colour statistics to the source text's on non-emissive clips; the flat paste is the geometry pipeline alone. The original is the garbled input.}
+\label{tab:r2p}
+\begin{tabular}{lccccc}
+\toprule
+Row & Read\,$\uparrow$ & Appear.\,$\downarrow$ & BG\,$\uparrow$ & Flicker\,$\downarrow$ & Jitter\,$\downarrow$\\
+\midrule
+\multicolumn{6}{l}{\textit{All 129 R2 clips}}\\
+Original & 0.0 & -- & -- & 2.07 & 9.00\\
+\steer & 100.0 & 1.21 & 36.1 & 1.87 & 8.66\\
+\method (B1) & 100.0 & 1.65 & 42.2 & 1.75 & 7.32\\
+Flat paste (geometry only) & 89.1 & 1.58 & 41.4 & 2.70 & 9.94\\
+Generator v0 (P0, as registered) & 86.8 & 2.42 & 41.3 & 2.63 & 9.45\\
++ input alignment (P1) & 87.6 & 2.52 & 41.3 & 2.51 & 9.09\\
++ output calibration (P2) & 91.5 & 2.09 & 41.3 & 2.65 & 9.57\\
++ both (P12) & 88.4 & 2.45 & 41.3 & 2.53 & 9.18\\
+\midrule
+\multicolumn{6}{l}{\textit{Non-emissive clips where P2 acts (50)}}\\
+Original & 0.0 & -- & -- & 1.50 & 6.92\\
+\steer & 100.0 & 1.67 & 36.1 & 1.26 & 6.52\\
+\method (B1) & 100.0 & 1.82 & 42.3 & 1.25 & 5.92\\
+Flat paste (geometry only) & 88.0 & 1.32 & 41.5 & 2.53 & 9.41\\
+Generator v0 (P0, as registered) & 76.0 & 2.97 & 41.5 & 2.41 & 8.56\\
++ input alignment (P1) & 82.0 & 2.11 & 41.5 & 2.45 & 8.81\\
++ output calibration (P2) & 88.0 & 2.11 & 41.5 & 2.47 & 8.89\\
++ both (P12) & 84.0 & 2.00 & 41.5 & 2.49 & 9.04\\
+\bottomrule
+\end{tabular}
+\end{table}

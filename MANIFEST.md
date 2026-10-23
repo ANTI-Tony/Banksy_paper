@@ -33,7 +33,8 @@ compute cluster (`$ROOT`); large data are not in this repository. Times are clus
 | second readers | Sec. 5.1, Tab. readers | reads the al_r1 outputs | InternVL (526 clips, 6 shards), Pixtral (295 English clips, 4 shards), Qwen re-read control (3 shards) on OSC (§4b) → `judge2/` | final |
 | VTE-Bench Real, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vte_real/B1` (8 clips shipped unchanged) | one evaluation run on OSC (§4b) | final |
 | VidScribe V2V, frozen B1 | Sec. 5.8, Tab. external | `bench_b1/vs_v2v/B1` (1 clip shipped unchanged) | one evaluation run on OSC (§4b) | final |
-| Material generator v0 (research track; `factory_v2_pair.py`, `make_pairs.py`, `matgen_v0.py`, `matgen_apply.py`, `analyze_r2.py`) | Sec. 5.7 (negative result), Fig. matgen | synthetic pairs `factory/{train,val}`; `r2_raw` (frozen B1 RAW caches of the 129 R2 clips); `r2_flat`, `r2_matgen` | training on OSC V100 (20k steps, seed 0); validation `runs/v0/eval_val.json`; one R2 evaluation run `r2_eval/` (Qwen reads, temporal, appearance, background) | R1 not met (0.482 < 0.50), R2 not met; capacity run `v1_base128` pending |
+| Material generator v0 (research track; `factory_v2_pair.py`, `make_pairs.py`, `matgen_v0.py`, `matgen_apply.py`, `analyze_r2.py`) | Sec. 5.7 (negative result), Fig. matgen | synthetic pairs `factory/{train,val}`; `r2_raw` (frozen B1 RAW caches of the 129 R2 clips); `r2_flat`, `r2_matgen` | training on OSC V100 (20k steps, seed 0); validation `runs/v0/eval_val.json`; one R2 evaluation run `r2_eval/` (Qwen reads, temporal, appearance, background) | R1 not met (0.482 < 0.50), R2 not met; capacity run `v1_base128` pending; photometric ablation below |
+| Photometric ablation of the generator (`matgen_apply.py --photometric`, `matgen_stats.py`, `analyze_r2p.py`, `make_tab_r2p.py`, `r2p.sbatch`; registered 2026-10-23 before the run) | Sec. 5.7 (attribution sentence), suppl. Sec. prereg_matgen, Tab. r2p | `r2p/{flat,p0,p1,p2,p12}` (frozen v0 weights `runs/v0/ckpt_20000.pt`, md5 27e5a655; erase-mask compositing; `r2p/train_stats.json` = training-set mean/std for P1) | one evaluation run on OSC over 8 rows (`r2p/eval/`: Qwen reads in 2 shards merged, temporal, appearance, background; jobs 56547889/56547890/56547893/56547894, 0.5 V100 GPU-h, 0.35 CPU-node-h) | verdict (b): P2/P12 better than P0 on the 50 non-emissive clips, (a) not met, P1 (c), P2 worse than the flat paste |
 | Banksy-V (verified selection; `composite_local.py`, `assemble_hybrid.py`) | Sec. 5.9, Tab. hybrid | `hyb/steer_local`, `hyb/steer2_local` (composites of the SteerVTE seeds) | one evaluation run on OSC over 8 methods (`hyb/`); verifier = InternVL reads of that run, scorer = Qwen + Pixtral | run 2 (`hyb2/`, 8 methods incl. the post-hoc V1.1) is Tab. hybrid; run 1 (`hyb/`) reported in the supplement |
 | full8 / sat53 / sat53p | Tab. SAT, Fig. SAT, Sec. 5.4 | `align/full8`, `align/sat53*` | their own jobs | historical, self-contained |
 | full6 / full7 / T / D | Tab. render (two tables) | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
@@ -131,6 +132,11 @@ The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluation
 | `r2_eval/temporal.json` (material generator v0; R2 run / validation / weights) | `88a448ec60895efc78d0eea090e03c5f3e586c67be94f1501691b6702b013d94` |
 | `matgen_v0/eval_val.json` (material generator v0; R2 run / validation / weights) | `7d89f2f9be11f975e656c1f70362e3db4c9a193d867128d1fc950fe5fc0b2016` |
 | `matgen_v0/ckpt_20000.pt` (material generator v0; R2 run / validation / weights) | `9abb5c9c7c37dcebfcf61c6d15f2b645f1195d31dbe0fee4fbb6abe1272d829e` |
+| `r2p/eval/eval_vlm.json` (photometric ablation; one run) | `505267c50c0d01402bf1921ab776fb4618caad149bf63744fbde38f7595bb548` |
+| `r2p/eval/mat_stats.json` (photometric ablation; one run) | `2dd47799300fe1a0350886bc8e4183e6b97c643359fe7931ff7c4912f1680bc2` |
+| `r2p/eval/bg.json` (photometric ablation; one run) | `78400c3cb6fda3ab4caf8e33bc73ba6d95c3219e9cf1c1dea58763cc12028654` |
+| `r2p/eval/temporal.json` (photometric ablation; one run) | `3eb278d0612c004fc8cb3252ac5aa1a117bc4ad044fde22e8f56ee5687c34789` |
+| `r2p/train_stats.json` (training-set statistics used by P1) | `65f9be560fb02ac6d76535243d22caa7b12a35c1084916123c87e3290ec431e9` |
 
 ## 7. How the paper's numbers are produced
 
