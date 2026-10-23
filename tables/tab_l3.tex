@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Carrier-grounded reconstruction without source glyphs (supplement). A: the 445 synthetic glyph-free clips whose carrier the branch can track (one evaluation run; the post-hoc row is a second run). B$'$: the 71 pseudo-text clips of the benchmark (one run). Readability by the first reader; BG PSNR in dB; temporal metrics as in Tab.~1.}
+\label{tab:l3}
+\begin{tabular}{lcccc}
+\toprule
+Row & Read\,$\uparrow$ & BG\,$\uparrow$ & Flicker\,$\downarrow$ & Jitter\,$\downarrow$\\
+\midrule
+\multicolumn{5}{l}{\textit{A: synthetic glyph-free clips, locatable carriers (445)}}\\
+Erased input & 0.0 & -- & 1.81 & 7.16\\
+Frozen \method, static-hint fallback & 81.6 & 41.8 & 2.26 & 8.81\\
+Carrier branch (registered) & 92.1 & 41.6 & 2.73 & 12.36\\
+Carrier branch, post-hoc tracking (second run) & 92.1 & 41.6 & 2.30 & 10.41\\
+\midrule
+\multicolumn{5}{l}{\textit{B$'$: natural pseudo-text clips (71)}}\\
+Original & 32.4 & -- & 2.05 & 9.38\\
+\method (deployed outputs) & 90.1 & 42.4 & 1.75 & 7.86\\
+\method re-run, same code & 93.0 & 41.0 & 1.76 & 7.91\\
+Carrier branch & 98.6 & 41.2 & 1.67 & 7.87\\
+\bottomrule
+\end{tabular}
+\end{table}
