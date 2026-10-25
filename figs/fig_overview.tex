@@ -1,46 +1,8 @@
-% Method overview (TikZ). Gates are diamonds; percentages are shares of the 526 benchmark clips in the final run.
+% Framework overview (raster, 2026-10-25; replaces the B1-only TikZ overview kept in figs/fig_overview_b1_tikz.tex).
+% The caption states which boxes produce the results reported in this paper and which are under test, negative or planned.
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{%
-\begin{tikzpicture}[
-  font=\sffamily\small, >={Stealth[length=2.2mm]}, node distance=6mm and 7mm,
-  proc/.style={draw=black!55, fill=procgrey, rounded corners=2pt, align=center, minimum height=13mm, text width=27mm, inner sep=3pt},
-  gate/.style={draw=black!65, fill=gategold!55, diamond, aspect=1.9, align=center, inner sep=1pt, text width=21mm, font=\sffamily\footnotesize},
-  io/.style={draw=black!55, fill=white, rounded corners=2pt, align=center, minimum height=13mm, text width=24mm, inner sep=3pt},
-  outbox/.style={draw=banksyblue, fill=banksyblue!8, rounded corners=2pt, align=center, minimum height=11mm, text width=26mm, inner sep=3pt},
-  lab/.style={font=\sffamily\scriptsize, text=black!70},
-  arr/.style={->, thick, draw=black!70}]
-% row 1
-\node[io] (in) {\textbf{Input}\\ generated clip $V$,\\ target string $s$,\\ hint box $b$};
-\node[proc, right=of in] (read) {\textbf{\textcircled{1} Read \& track}\\ OCR on every frame,\\ text rows, carrier\\ homographies $H_t$};
-\node[gate, right=of read] (pres) {\textbf{Preservation}\\ \textbf{gate}\\ already reads $s$?};
-\node[outbox, right=12mm of pres] (keep) {\textbf{Output = input}\\ (untouched)\\ 9\% of clips};
-\node[gate, below=9mm of pres] (loc) {\textbf{Localization}\\ \textbf{gate}\\ strong instance\\ evidence?};
-% row 2
-\node[proc, left=12mm of loc, yshift=-13mm] (box) {\textbf{Box layout}\\ fill the tracked box\\ (38\% of clips)};
-\node[proc, left=12mm of loc, yshift=13mm] (inst) {\textbf{Instance layout}\\ size, colour, baseline\\ of the old glyphs};
-\node[proc, right=12mm of loc] (erase) {\textbf{\textcircled{2} Erase}\\ old text band\\ (or box); LaMa\\ inpainting};
-\node[proc, right=of erase] (render) {\textbf{\textcircled{3} Deterministic}\\ \textbf{rendering}: exact $s$,\\ matched font, source\\ ink \& shading, warp $H_t$};
-\node[gate, right=of render] (app) {\textbf{Appearance}\\ \textbf{gate}\\ emissive and\\ transport helps?};
-\node[proc, below=7mm of app] (sat) {\textbf{\textcircled{4} SAT}\\ transport source glow\\ / material (10\%)};
-\node[outbox, right=of app] (comp) {\textbf{\textcircled{5} Composite}\\ inside the text region;\\ outside untouched};
-% edges
-\draw[arr] (in) -- (read);
-\draw[arr] (read) -- (pres);
-\draw[arr] (pres) -- node[lab, above] {yes} (keep);
-\draw[arr] (pres) -- node[lab, right] {no} (loc);
-\draw[arr] (loc.west) -- ++(-4mm,0) |- node[lab, pos=0.75, above] {yes} (inst.east);
-\draw[arr] (loc.west) -- ++(-4mm,0) |- node[lab, pos=0.75, below] {no} (box.east);
-\draw[arr] (inst.north) -- ++(0,3mm) -| ($(erase.north)+(-6mm,0)$);
-\draw[arr] (box.south) -- ++(0,-3mm) -| ($(erase.south)+(-6mm,0)$);
-\draw[arr] (erase) -- (render);
-\draw[arr] (render) -- (app);
-\draw[arr] (app) -- node[lab, above] {no} (comp);
-\draw[arr] (app) -- node[lab, right] {yes} (sat);
-\draw[arr] (sat.east) -| (comp.south);
-% legend
-\node[lab, anchor=north west, align=left] at ($(in.south west)+(0,-6mm)$) {\colorbox{gategold!55}{\strut evidence gate}\ \ \colorbox{procgrey}{\strut processing}\\[2pt] shares: final run on 526 clips};
-\end{tikzpicture}}
-\caption{\textbf{\method overview.} Three evidence gates decide how much to change. The preservation gate returns the input unchanged when multi-frame OCR already reads the target; the localization gate chooses between laying the new text out on the old glyph instance and filling the tracked box; the appearance gate enables source appearance transport (SAT) only on emissive carriers where it measurably reduces the reconstruction error. The target string is always rendered deterministically, so its spelling cannot drift, and only pixels inside the text region are composited.}
+\includegraphics[width=\linewidth]{figs/fig_overview_framework.png}
+\caption{\textbf{\method framework and the scope of this paper.} Text analysis reads and tracks the text and its carrier; the preservation gate returns the clip unchanged when the text already reads the target; otherwise the evidence available decides between repairing the existing text (B1) and glyph-free reconstruction (G); local erasure and a region-constrained compositor keep every edit inside the allowed region. \emph{Status:} every result reported in this paper is produced by the frozen B1 path, whose only appearance step is the non-parametric source appearance transport; nothing is trained. G (v4.1) is under a sealed cross-generator test and is not part of the reported results; the trainable material synthesis (M) is a negative result (\cref{sec:exp_neg}); the semantic evidence module (S), the evidence router and the verification loop are planned.}
 \label{fig:overview}
 \end{figure*}
