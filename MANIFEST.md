@@ -40,6 +40,9 @@ compute cluster (`$ROOT`); large data are not in this repository. Times are clus
 | full8 / sat53 / sat53p | Tab. SAT, Fig. SAT, Sec. 5.4 | `align/full8`, `align/sat53*` | their own jobs | historical, self-contained |
 | full6 / full7 / T / D | Tab. render (two tables) | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
 | refiner (fuse) | Tab. refiner, suppl. ladder | `align/full*`, `repair_outT` | their own jobs | historical, self-contained |
+| Glyph-free rounds v2 / v3 (registered 2026-10-24; `carrier_v2.py`, `carrier_fix.py --v2`) | suppl. Sec. D (rounds), Tab. g_rounds | `out/l3/` G-syn, G-nat2, G-syn2 and benchmark-L2 trees | one evaluation run per set on OSC Pitzer (PCS0296) → `analysis_g.json`, `analysis_n.json`, `analysis_g2.json`, `analysis_b3.json` | final (both not passed) |
+| Glyph-free v4 / v4.1 on D4 (development; `carrier_v4.py`, `edit_support.py`, `compare_v41.py`) | suppl. Sec. D (v4.1) | `out/l3/v4/{cog,wan}_D4` (v4 outputs kept in `v40/`) | `verdict_D4_devcheck_v40.json`, `verdict_D4_devcheck_v41.json`, `{cog,wan}_D4/compare_v41.json` | development evidence only |
+| **Glyph-free v4.1 sealed cross-generator test (T4)** — frozen code `code/frozen_v41_20261025` (manifest sha256 `477f1e9a…`); CogVideoX-5B and Wan2.2-TI2V-5B, 480 clips each | Sec. 5.7 paragraph (main8), Sec. 5.7 (long version), suppl. Sec. D, Tab. g4, Tab. g_rounds | `out/l3/v4/{cog,wan}_T4/` | full pipeline once per generator (OSC Pitzer, PCS0296); verdict job 56702391 → `out/l3/v4/verdict_T4.json` | final: FAIL (3 of 34 automatic gates); diagnostic human audit `out/l3/v4/audit_T4_diag/` pending |
 
 Appearance distances are normalised within each evaluation job and are compared only within one table.
 
@@ -141,6 +144,18 @@ The Delta and DeltaAI queues were blocked for days on 10-22, so these evaluation
 | `v1_base128/eval_val.json` (capacity test; validation only) | `0bbbbe15e1cb41248fc6dc72ef601ed96ae2cd8bc950ef53de5ee7273f0f8bb4` |
 | `v1_base128/ckpt_20000.pt` (capacity test; validation only) | `43d47b025502d7bb7ba0e14b4fe56e4aaa16f5841a4bcad91dd21e027c1a238f` |
 
+| `out/l3/v4/verdict_T4.json` (sealed test T4) | `0e3519b411205e12b7cd343e74fe0cede3f54ebedfebece24e097c7ff0bb77c2` |
+| `out/l3/v4/cog_T4/analysis_v4nat.json` (T4, natural subset) | `0eff6cf7a4c334a75a8d9d205e3d8ba7b2712ebebb7972505242caf42c1bd7ed` |
+| `out/l3/v4/wan_T4/analysis_v4nat.json` (T4, natural subset) | `68f40740753aa32645f63a199b202a7162e28a248b2e762ed54c9778231ba03f` |
+| `out/l3/v4/verdict_D4_devcheck_v40.json` (D4, development) | `ae063bedfb35f80f9b23ec6043bdb04953a650947a02f8ea38cd1f72a1b06349` |
+| `out/l3/v4/verdict_D4_devcheck_v41.json` (D4, development) | `6bfaff7974c1a1dc61c10039487cf82f37b30276a021f8010a115b68e24ac999` |
+| `out/l3/v4/cog_D4/compare_v41.json` (D4, v4 vs v4.1) | `8d0d2fc682785e8b0e32aba999ef1fb6c23a1458526f9ede62e3043f714a9a10` |
+| `out/l3/v4/wan_D4/compare_v41.json` (D4, v4 vs v4.1) | `c2469ca2e761209d082ff569c9df89c15613f9e3a7496a3c4a680a41690579ec` |
+| `analysis_g.json` (v2, G-syn) | `210a702577db5414586d1d04f52309ff332146b0e607d5945082b5c85b7a59d6` |
+| `analysis_n.json` (v2, G-nat2) | `7a6867aab216b6fb3ef7e762bf98d3fabb01612d0882d8a8b32b933298b95910` |
+| `analysis_g2.json` (v3, G-syn2) | `226b5983e25e68eeb4eb9a89d250963ec5d7e0a93231869413e75991ec05c594` |
+| `analysis_b3.json` (v3, benchmark pseudo-text) | `45fcb567fc086fb99810416d0389fcf863f4c9f86a4825e940d95c3b7b18eb1b` |
+
 ## 7. How the paper's numbers are produced
 
 `python tools/paper_numbers.py <dir with the six al_r1 JSONs> manifest/dev_selective_40.txt manifest/dev_reuse_9.txt <out>`
@@ -148,3 +163,5 @@ writes `numbers.tex` (copied to `numbers_r1.tex`), `tables/tab_main.tex`, `table
 `tables/tab_supp_comp.tex`; `manifest/cache_stats_r1.json` holds the statistics read from the run's caches (font choices,
 rotations, gate decisions). Figures: `figs/plots/make_plots.py <eval_vlm.json> figs/plots <bg.json>` and
 `make_paper_cells.py` with `--banksy align/r1/B1` on the picks in `figs/picks.json`.
+
+Glyph-free rounds and the sealed test: `python tools/make_numbers_g4.py --t4 verdict_T4.json --t4nat-cog cog_T4/analysis_v4nat.json --t4nat-wan wan_T4/analysis_v4nat.json --d4v40 verdict_D4_devcheck_v40.json --d4v41 verdict_D4_devcheck_v41.json --cmp-cog cog_D4/compare_v41.json --cmp-wan wan_D4/compare_v41.json --v2syn analysis_g.json --v2nat analysis_n.json --v3syn analysis_g2.json --v3l2 analysis_b3.json` writes `numbers_g4.tex`, `tables/tab_g4.tex` and `tables/tab_g_rounds.tex` (the script records the sha256 of every input in the header of `numbers_g4.tex`).
